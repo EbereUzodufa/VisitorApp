@@ -1,0 +1,91 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="VisitorApp.HubPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp"
+    xmlns:data="using:VisitorApp.Data"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <!-- Grid-appropriate 310 by 260 pixel item template as seen in section 4 -->
+        <SolidColorBrush Color="Aquamarine" x:Name="Welcome" />
+    </Page.Resources>
+
+    <!--
+    This grid acts as a root panel for the page.
+  -->
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
+        <Hub SectionHeaderClick="Hub_SectionHeaderClick" Grid.Column="0">
+            <Hub.Header>
+                <!-- Back button and page title -->
+                <Grid Width="1836" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="559*"/>
+                        <ColumnDefinition Width="1277*"/>
+
+                    </Grid.ColumnDefinitions>
+                    <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
+                        VerticalAlignment="Top"
+                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button" Height="41" Width="41"/>
+                    <Image Source="Assets/AIICOLogo.png"  Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="0,41,0,20"   />
+
+                </Grid>
+            </Hub.Header>
+            <HubSection Width="683">
+                <HubSection.Background>
+                    <ImageBrush ImageSource="Assets/Ocean.jpg" Stretch="UniformToFill" />
+                </HubSection.Background>
+
+            </HubSection>
+        </Hub>
+        <Grid Grid.Column="1" Margin="46,73,10,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="610*"/>
+                <ColumnDefinition Width="17*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="49*"/>
+                <RowDefinition Height="115*"/>
+                <RowDefinition Height="118*"/>
+                <RowDefinition Height="118*"/>
+                <RowDefinition Height="123*"/>
+                <RowDefinition Height="115*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="Title"  Text="Welcome To AIICO Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" 
+                        VerticalAlignment="Top" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap"   Height="40" Grid.ColumnSpan="2"  />
+
+            <TextBlock x:Name="CheckIn"  Text="Check In/Check Out" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" 
+                        VerticalAlignment="Top" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap"   Height="40" Margin="143,0,0,0" Grid.ColumnSpan="2"  />
+
+
+            <Button x:Name="FirstTimeButton"  Foreground="White"  FontSize="50"    Content="First Time"  Grid.Row="2" Click="FirstTimeButton_Click" Margin="-3,7,7,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button x:Name="RegisteredButton"  Foreground="White" Content="Registered No Invitation" FontSize="50" Grid.Row="3" Click="RegisteredButton_Click" Margin="-3,7,7,11" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <Button x:Name="InvitationButton"  Foreground="White"  FontSize="50"  Content="I Have invitation" Grid.Row="4"  Click="InvitationButton_Click" Margin="-3,10,7,8.156" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="100"/>
+            <Button x:Name="PhotoButton"  Foreground="White"  FontSize="50"  Content="Photo Capture" Grid.Row="5"  Click="PhotoButton_Click" Margin="-3,12,7,11" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="100"/>
+
+            <Button x:Name="CheckOutButton"  Foreground="White"  FontSize="60"  Content="Check Out" Grid.Row="6"  Click="CheckOutButton_Click" Margin="-3,13,7,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+        </Grid>
+    </Grid>
+</Page>

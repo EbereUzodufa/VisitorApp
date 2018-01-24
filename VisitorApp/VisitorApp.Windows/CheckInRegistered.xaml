@@ -1,0 +1,77 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="VisitorApp.CheckInRegistered"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp"
+    xmlns:common="using:VisitorApp.Common"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
+
+        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
+
+
+    </Page.Resources>
+
+    <!--
+        This grid acts as a root panel for the page.
+    -->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="199*"/>
+            <RowDefinition Height="139*"/>
+            <RowDefinition Height="141*"/>
+            <RowDefinition Height="266*"/>
+            <RowDefinition Height="23*"/>
+        </Grid.RowDefinitions>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF28629C" Offset="0"/>
+                <GradientStop Color="#FF5E7CE4" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="133*"/>
+            <ColumnDefinition Width="263*"/>
+            <ColumnDefinition Width="516*"/>
+            <ColumnDefinition Width="240*"/>
+            <ColumnDefinition Width="165*"/>
+            <ColumnDefinition Width="49*"/>
+
+        </Grid.ColumnDefinitions>
+        <Image Source="Assets/AIICOLogo.png" RenderTransformOrigin="0.5,0.5" Margin="50,31,88,59" Grid.Column="1"   />
+        <TextBlock x:Name="Title"  Text="Welcome To AIICON Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="29,31,135,127" Grid.Column="2" Grid.ColumnSpan="3"  />
+        <TextBlock x:Name="CheckIn" Text="Visitor Registration" Style="{StaticResource HeaderTextBlockStyle}" Foreground="White"  FontWeight="Bold" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="154,88,96,60" RenderTransformOrigin="0.941,-0.412" Grid.Column="2" Grid.ColumnSpan="2" />
+        <TextBlock  Text="Your Phone Number" FontSize="40" Foreground="White" Margin="69,14,436,75" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <TextBox  x:Name="txtPhoneNumber" TextWrapping="Wrap" Foreground="Black" Background="White" Language="en-US"  FontSize="40" Margin="69,67,80,4" Grid.ColumnSpan="3" Grid.Row="1"/>
+        <TextBlock  Text="To See (Host Name)" FontSize="40" Foreground="White" Margin="69,8,479,84" Grid.ColumnSpan="3" Grid.Row="2"/>
+        <TextBox x:Name="txtHostName"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="40"  Margin="69,56,80,13" Grid.ColumnSpan="3" Grid.Row="2"/>
+        <TextBlock  Text="Signature" FontSize="40" Foreground="White" Margin="69,7,436,208.902" Grid.ColumnSpan="3" Grid.Row="3" />
+        <Canvas x:Name="InkCanvas" Background="White" Margin="69,60,80,20" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2" />
+        <Border Margin="19,0,11,14" HorizontalAlignment="Center" Width="375" Height="233" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="White" Background="Black" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2">
+            <Image x:Name="PhotoCopy" Margin="12,17,12,15" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="1" Stretch="Fill"/>
+        </Border>
+        <TextBlock x:Name="txtVisitorName" HorizontalAlignment="Center" Margin="19,23,11,149.902" TextWrapping="Wrap" Text="Vititor's Name" VerticalAlignment="Center" FontSize="30" TextAlignment="Center" Width="375" Height="93" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="3"/>
+        <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
+            VerticalAlignment="Stretch"
+            Command="{Binding NavigationHelper.Home, ElementName=pageRoot}"
+            AutomationProperties.Name="Home"
+            AutomationProperties.AutomationId="BackButton"
+            AutomationProperties.ItemType="Navigation Button" Width="41" Margin="0,40,42,106" HorizontalAlignment="Right" Click="BackButton_Click" Background="White" RequestedTheme="Dark"/>
+        <Button x:Name="CheckInButton"  Foreground="#FF72FB00" Background="White" FontSize="40" Height="103" Click="CheckInButton_Click"  Margin="16,136,8,0" BorderBrush="#FF72FB00" Grid.Column="3" Grid.Row="3" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.ColumnSpan="2">
+            <TextBlock  Text="Check In" FontSize="40" Foreground="#FF72FB00" SelectionHighlightColor="#FF5E7CE4"/>
+        </Button>
+        <Button x:Name="button" Content="Button" Grid.Column="4" HorizontalAlignment="Stretch" Margin="7,85,8,7" VerticalAlignment="Stretch" Click="button_Click"/>
+    </Grid>
+</Page>
