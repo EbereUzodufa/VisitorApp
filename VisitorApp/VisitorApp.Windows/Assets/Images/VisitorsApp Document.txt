@@ -1,0 +1,4 @@
+CadetBlue 
+Hex Color Code	#5f9ea0
+RGB Decimal	rgb(95, 158, 160)
+

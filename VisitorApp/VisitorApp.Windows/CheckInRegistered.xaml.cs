@@ -1,21 +1,14 @@
 ﻿using VisitorApp.Common;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Input.Inking;
 using Windows.Devices.Input;
-using Windows.Storage;
-using Windows.Storage.Pickers;
 using Windows.Storage.Streams;
 using Windows.UI;
 using Windows.UI.Input;
@@ -53,12 +46,22 @@ namespace VisitorApp
             get { return this.navigationHelper; }
         }
 
-
         // Scenario specific constants and variables.
         const double STROKETHICKNESS = 5;
         Point _previousContactPt;
         uint _penID = 0;
         uint _touchID = 0;
+
+        //Delcare Important variables
+        private string userName;
+        private string userCompany;
+        private string userEmail;
+        private string userPhoneNumber;
+        private string userPhotoString;
+        private string userRegistrationStatus;  //Tell us if user is registered
+
+        private string base64String;    //Signature
+
 
         // Create the InkManager instance.
         InkManager _inkManager = new Windows.UI.Input.Inking.InkManager();
@@ -274,117 +277,205 @@ namespace VisitorApp
             this.Frame.Navigate(typeof(HubPage));
         }
 
-
-
         private async void CheckInButton_Click(object sender, RoutedEventArgs e)
         {
-            //string base64String = "";
+            base64String = "";
 
-            if (_inkManager.GetStrokes() != null && _inkManager.GetStrokes().Count > 0)
+            //Check content
+
+            try
             {
-            //    RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
-            //    await renderTargetBitmap.RenderAsync(InkCanvas);
-                //PhotoControl.Source = renderTargetBitmap;
-            //    using (var stream = new InMemoryRandomAccessStream())
-            //    {
-            //        await _inkManager.SaveAsync(stream);
-            //        await stream.FlushAsync();
-            //        stream.Seek(0);
-            //        //byte[] bytes = new byte[stream.Size];
-
-                    //        Byte[] bytes = new Byte[0];
-                    //        var reader = new DataReader(stream.GetInputStreamAt(0));
-                    //        bytes = new Byte[stream.Size];
-                    //        await reader.LoadAsync((uint)stream.Size);
-                    //        reader.ReadBytes(bytes);
-                    //        // Convert the byte array to Base 64 string
-                    //        base64String = Convert.ToBase64String(bytes);
-                    //        PhotoCopy.Source = await ImageProcessor.Base64StringToBitmap(base64String);                   
-
-                    //}
-
-                var phoneNumber = txtPhoneNumber.Text;
-                var hostName = txtHostName.Text;
-                //
-                if (string.IsNullOrEmpty(phoneNumber))
+                if (_inkManager.GetStrokes() != null && _inkManager.GetStrokes().Count > 0)
                 {
-                    MessageDialog md = new MessageDialog("Please enter phone Number");
-                    await md.ShowAsync();
-                    return;
-                }
+                    RenderTargetBitmap renderTargetBitmap = new RenderTargetBitmap();
+                    await renderTargetBitmap.RenderAsync(InkCanvas);
+                    //PhotoControl.Source = renderTargetBitmap;
+                    using (var stream = new InMemoryRandomAccessStream())
+                    {
+                        await _inkManager.SaveAsync(stream);
+                        await stream.FlushAsync();
+                        stream.Seek(0);
+                        //byte[] bytes = new byte[stream.Size];
 
-                if (string.IsNullOrEmpty(hostName))
-                {
-                    MessageDialog md = new MessageDialog("Please enter your host name");
-                    await md.ShowAsync();
-                    return;
+                        Byte[] bytes = new Byte[0];
+                        var reader = new DataReader(stream.GetInputStreamAt(0));
+                        bytes = new Byte[stream.Size];
+                        await reader.LoadAsync((uint)stream.Size);
+                        reader.ReadBytes(bytes);
+                        // Convert the byte array to Base 64 string
+                        base64String = Convert.ToBase64String(bytes);
+                        //PhotoCopy.Source = await ImageProcessor.Base64StringToBitmap(base64String);
+
+                    }
+
+                    var phoneNumber = txtPhoneNumber.Text;
+                    var hostName = txtHostName.Text;
+                    //
+                    if (string.IsNullOrEmpty(phoneNumber))
+                    {
+                        MessageDialog md = new MessageDialog("Please enter phone Number");
+                        await md.ShowAsync();
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(hostName))
+                    {
+                        MessageDialog md = new MessageDialog("Please enter your host name");
+                        await md.ShowAsync();
+                        return;
+                    }
+                    else
+                    {
+                        //Check user
+
+                        if (userRegistrationStatus == "Registered")
+                        {
+                            //This is to check-IN
+                            newGuest();
+                        }
+
+                        else
+                        {
+                            MessageDialog notRegistration = new MessageDialog("Visitor not registered");
+                            notRegistration.Commands.Add(new UICommand("Register Visitor") { Id = 0 });
+                            notRegistration.Commands.Add(new UICommand("Cancel") { Id = 1 });
+                            var result = await notRegistration.ShowAsync();
+
+                            if (Convert.ToInt32(result.Id) == 0)
+                            {
+                                //Navigate to the Registration Page
+                                this.Frame.Navigate(typeof(RegistrationPage));
+                            }
+
+                            else
+                            {
+                                //Do nothing
+                                //This is  equivalent to Cancel since either way you are going back
+                            }
+                        }
+                    }
                 }
-                
-                VisitorDataPayLoad visitor = new VisitorDataPayLoad();
-                visitor.CompanyName = "";
-                visitor.EmailAddress = "";
-                visitor.FullName = "";
-                visitor.GuestName = "";
-                visitor.HostName = hostName;
-                visitor.InvitationCode = "";
-                visitor.PhoneNumber = Convert.ToInt64(phoneNumber);
-                visitor.Photo = "@";
-                //visitor.Signature = base64String;
-                visitor.ThumbPrint = "@";
+                else
+                {
+
+                    MessageDialog md = new MessageDialog("Please input signature");
+                    bool result = false;
+                    md.Commands.Add(new UICommand("OK", new UICommandInvokedHandler((cmd) => result = true)));
+                    await md.ShowAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageDialog msg = new MessageDialog(ex.Message);
+                await msg.ShowAsync();
+            }
+           
+        }
+
+        private async void newGuest()
+        {
+            //Send to DB
+
+            var phoneNumber = txtPhoneNumber.Text;
+            var hostName = txtHostName.Text;
+
+            VisitorDataPayLoad visitor = new VisitorDataPayLoad();
+            visitor.CompanyName = userCompany;
+            visitor.EmailAddress = userEmail;
+            visitor.FullName = userName;                            //I think the guest name is the same as username. I suggest we add another field in Register to get 
+            visitor.GuestName = userName;                           //a particular name to link to change name since name can be changed.
+            visitor.HostName = hostName;
+            visitor.InvitationCode = "No Invitation Code";          //This helps confirm the guest has no invitation.
+            visitor.PhoneNumber = Convert.ToInt64(phoneNumber);
+            visitor.Photo = userPhotoString;                        //Reason - what if user change name or picture later? This to identify what he/she looked like during that visit. 
+            visitor.Signature = base64String;
+            visitor.ThumbPrint = "@";
+            RemoteService service = new RemoteService();
+            ResponseMessage msg = await service.CheckInRegisteredUser(visitor);
+            if (msg.ResponseCode != 0)
+            {
+                MessageDialog md = new MessageDialog("Could not complete Check In: " + msg.Message);
+                await md.ShowAsync();
+                return;
+            }
+
+            this.Frame.Navigate(typeof(HubPage));
+            MessageDialog tag = new MessageDialog("Please pick your tag : Your Check In Code is " + msg.Message + ". Please click OK button after copy");
+            await tag.ShowAsync();
+        }
+
+        private async void  getUserDetail()
+        {
+            try
+            {
+                //This helps get user detail while data is filled out.
                 RemoteService service = new RemoteService();
-                ResponseMessage msg = await service.CheckInRegisteredUser(visitor);
-                if (msg.ResponseCode != 0)
+                VisitorDataPayLoad payload = new VisitorDataPayLoad
                 {
-                    MessageDialog md = new MessageDialog("Could not complete Check In: " + msg.Message);
-                    await md.ShowAsync();
-                    return;
+                    PhoneNumber = Convert.ToInt64(txtPhoneNumber.Text)
+                };
+
+                var response = await service.GetDetailOnUserService(payload);
+
+                if (response.ResponseStatusCode == System.Net.HttpStatusCode.Found)
+                {
+                    //When we find user
+                    userRegistrationStatus = "Registered";
+                    userName = response.userName;
+                    userCompany = response.companyName;
+                    userEmail = response.email;
+                    userPhoneNumber = response.phoneNumber;
+                    userPhotoString = response.photstring;
+
+                    txtVisitorName.Text = response.userName;
+                    string photoString = userPhotoString;           //Repetition based on flow/arrangement
+
+                    byte[] Bytes = Convert.FromBase64String(photoString);
+
+                    var stream = new InMemoryRandomAccessStream();
+                    //var bytes = Convert.FromBase64String(source);
+                    var dataWriter = new DataWriter(stream);
+                    dataWriter.WriteBytes(Bytes);
+                    await dataWriter.StoreAsync();
+                    stream.Seek(0);
+                    var img = new BitmapImage();
+                    img.SetSource(stream);
+                    PhotoCopy.Source = img;
                 }
-                
-                this.Frame.Navigate(typeof(HubPage));
-                MessageDialog tag = new MessageDialog("Please pick your tag : Your Check In Code is " + msg.Message + ". Please click OK button after copy");
-                await tag.ShowAsync();
+                else
+                {
+                    userRegistrationStatus = "Not Registered";
+                    PhotoCopy.Source = null;
+                    txtVisitorName.Text = "";
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageDialog msg = new MessageDialog(ex.Message);
+                await msg.ShowAsync();
+            }
 
+        }
 
+        private void txtPhoneNumber_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            //For check sytax entered in PhoneNumber field
+            CheckSyntax.checkOnlyNumber(sender, e);
+
+            if (txtPhoneNumber.Text.Length > 10)
+            {
+                getUserDetail();
+                txtVisitorName.Visibility = Visibility.Visible;
             }
             else
             {
-
-                MessageDialog md = new MessageDialog("Please input signature");
-                bool result = false;
-                md.Commands.Add(new UICommand("OK", new UICommandInvokedHandler((cmd) => result = true)));
-                await md.ShowAsync();
+                txtVisitorName.Visibility = Visibility.Collapsed;
             }
         }
 
-        private async void  button_Click(object sender, RoutedEventArgs e)
+        private void btnHome_Click(object sender, RoutedEventArgs e)
         {
-            RemoteService service = new RemoteService();
-            VisitorDataPayLoad payload = new VisitorDataPayLoad {
-                PhoneNumber = Convert.ToInt64(txtPhoneNumber.Text)
-            };
-
-            var response = await service.GetDetailOnUserService(payload);
-
-            if (response.ResponseStatusCode == System.Net.HttpStatusCode.Found)
-            {
-
-                txtVisitorName.Text = response.userName;
-                string photoString = response.photstring;
-
-                byte[] Bytes = Convert.FromBase64String(photoString);
-
-                var stream = new InMemoryRandomAccessStream();
-                //var bytes = Convert.FromBase64String(source);
-                var dataWriter = new DataWriter(stream);
-                dataWriter.WriteBytes(Bytes);
-                await dataWriter.StoreAsync();
-                stream.Seek(0);
-                var img = new BitmapImage();
-                img.SetSource(stream);
-                PhotoCopy.Source = img;
-
-            }
-
+            this.Frame.Navigate(typeof(HubPage));
         }
     }
 }

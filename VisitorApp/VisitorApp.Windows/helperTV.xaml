@@ -1,0 +1,136 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Class="VisitorApp.helperTV"
+    mc:Ignorable="d">
+    
+    <Page.DataContext>
+        <local:VisitorAppHelper/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--This for buttons on top-->
+        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Grid.Row="0">
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="btnshowGuest" Content="Show All Guest"/>
+                <Button x:Name="btnshowVisitors" Content="Show Checked In Guest"/>
+            </StackPanel>
+        </Grid>
+
+        <!--This is to display content-->
+        <Grid  Margin="20, 20,20,20" Grid.Row="1">
+            <!--Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"-->
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF28629C" Offset="0"/>
+                    <GradientStop Color="#FF5E7CE4" Offset="1"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+            <GridView Name="gridviewData" ItemsSource="{Binding DisplayList}">
+                <GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Name="txtVisit" Text="{Binding VisitorFullname}" FontSize="100" Foreground="Green" FontWeight="Black"/>
+                            <TextBlock Name="txtVit" Text="{Binding VisitorID}" FontSize="100" Foreground="Green" FontWeight="Black"/>
+                            <TextBlock Name="txtMad" Text="This is Madness"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>
+                <!--<GridView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Grid>
+                                <StackPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="200"/>
+                                            <ColumnDefinition Width="400"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="{Binding Picture}" HorizontalAlignment="Left" Height="150"  Width="150"  Margin="5,5,5,5" />
+                                        <Grid Grid.Column="1" Background="White" Margin="10,10,10,10">
+                                            
+                                            --><!--Make my items appear in the middle--><!--
+                                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                                <TextBlock x:Name="txtVisitorFullname" Text="{Binding VisitorFullname}" Foreground="Crimson" FontWeight="Bold" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtVisitorCompany" Text="{Binding VisitorCompany}" Foreground="RoyalBlue" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtVisitorEmail" Text="{Binding VisitorEmail}" Foreground="Green" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtVisitorPhoneNumber" Text="{Binding VisitorPhoneNumber}" Foreground="Orange" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtGuestName" Text="{Binding GuestName}" Foreground="Crimson" FontWeight="Bold" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtGuestHostName" Text="{Binding GuestHostName}" Foreground="RoyalBlue" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtGuestCompany" Text="{Binding GuestCompany}" Foreground="Green" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style BasedOn="{x:Null}" TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtGuestPhoneNumber" Text="{Binding GuestPhoneNumber}" Foreground="Orange" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                                <TextBlock x:Name="txtGuestStatus" Text="{Binding GuestStatus}" Foreground="Purple" HorizontalAlignment="Center">
+                                                    <TextBlock.Style>
+                                                        <Style TargetType="TextBlock">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </Style>
+                                                    </TextBlock.Style>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </Grid>
+                                    </Grid>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </GridView.ItemTemplate>-->
+            </GridView>
+        </Grid>
+    </Grid>
+</Page>

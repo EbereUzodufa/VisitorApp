@@ -1,0 +1,172 @@
+﻿<Page
+    x:Class="VisitorApp.Dashboard.Events"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp.Dashboard"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="CadetBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.65"/>
+            </Grid.Background>
+            <!--Logo-->
+            <StackPanel Orientation="Horizontal" Margin="20,5,5,5">
+                <Border BorderThickness="0" Height="75" Width="150">
+                    <Image Source="/Assets/Images/SplashScreen scale Design 2 White.png"/>
+                </Border>
+            </StackPanel>
+            <!--User Button-->
+            <Button x:Name="btnuser" HorizontalAlignment="Right" Margin="5" BorderThickness="0">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem  x:Name="txbUserName" Text="Item 1" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" IsHitTestVisible="False"/>
+                        <MenuFlyoutSeparator Background="CadetBlue"/>
+                        <MenuFlyoutItem x:Name="btnSignOut" Text="Sign Out" Background="CadetBlue" Foreground="White" FontWeight="Bold" Click="btnSignOut_Click" HorizontalContentAlignment="Center"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imgUserPhoto" ImageSource="/Assets/Images/user White.png" Stretch="Fill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Button>
+
+            <!--Company Name-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                <TextBlock x:Name="txbUserCompanyName" Text="Juj" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" 
+                               FontSize="32" FontWeight="Bold" Margin="0,0,10,0" TextAlignment="Right"/>
+                <Border Height="100" Width="100" HorizontalAlignment="Left" BorderThickness="0">
+                    <Image x:Name="imgCompanyLogo" Source="/Assets/AIICOLogo.png" Stretch="Fill"/>
+                </Border>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Grid Grid.Row="0">
+                <Button x:Name="btnBackEvents" HorizontalAlignment="Left" Content="Back" Margin="10" Foreground="Black" BorderBrush="White" Click="btnBackEvents_Click"/>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                    <TextBlock x:Name="txTitle" Text="Event: " FontSize="40" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="1" Margin="15">
+                    <StackPanel Margin="5" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Invitation Code" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBox x:Name="txtIvCode" Width="120" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black"/>
+                            <Button x:Name="btnGetCode" Content="Get Details" Foreground="Black" BorderBrush="Black"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Full Name" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBlock x:Name="txbFullName" TextWrapping="Wrap" VerticalAlignment="Center" Margin="2" Foreground="Black" Text="Full Name"/>
+                            <TextBox x:Name="txtFullName" Width="500" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black" Visibility="Collapsed"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Email" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBlock x:Name="txbEmail" TextWrapping="Wrap" VerticalAlignment="Center" Margin="2" Foreground="Black" Text="Email"/>
+                            <TextBox x:Name="txtEmail" Width="200" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black" Visibility="Collapsed"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Phone Number" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBlock x:Name="txbPhoneNumber" TextWrapping="Wrap" VerticalAlignment="Center" Margin="2" Foreground="Black" Text="Phone Number" Visibility="Visible"/>
+                            <TextBox x:Name="txtPhoneNumber" Width="200" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black" Visibility="Collapsed"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Occupation" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBlock x:Name="txbOccupation" TextWrapping="Wrap" VerticalAlignment="Center" Margin="2" Foreground="Black" Text="Occupation"/>
+                            <TextBox x:Name="txtOccupation" Width="500" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black" Visibility="Collapsed"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Company Name" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBlock x:Name="txbCompanyName" TextWrapping="Wrap" VerticalAlignment="Center" Margin="2" Foreground="Black" Text="Company Name"/>
+                            <TextBox x:Name="txtCompanyName" Width="500" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black" Visibility="Collapsed"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Left">
+                            <TextBlock Text="Occupation Category" VerticalAlignment="Center" Width="120" Margin="2"/>
+                            <TextBlock x:Name="txbOccupationCategory" TextWrapping="Wrap" VerticalAlignment="Center" Margin="2" Foreground="Black" Text="Company Name"/>
+                            <TextBox x:Name="txtOccupationCategory" Width="500" Background="White" VerticalAlignment="Center" Margin="2" Foreground="Black" Visibility="Collapsed"/>
+                        </StackPanel>
+
+                        <Button x:Name="btnSubmit" Content="Submit" BorderBrush="White" Foreground="Black" HorizontalAlignment="Right" Margin="5"/>
+                    </StackPanel>
+                </Grid>
+
+                <!--Populate List of Attendees-->
+                <Grid Grid.Row="0" Margin="15">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBlock Text="Yet to Check-in" TextAlignment="Center" HorizontalAlignment="Center" FontSize="30"/>
+                    </Grid>
+                    
+                    <!--Items Fill-->
+                    <ListView x:Name="LstAttendee" Grid.Row="1"  CanReorderItems="True" IsItemClickEnabled="True" ItemClick="LstAttendee_ItemClick"
+                                                                SelectionMode="Single"
+                                                                ScrollViewer.VerticalScrollBarVisibility="Auto" Background="White">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" >
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <ListViewItemPresenter SelectedBackground="CadetBlue" PointerOverBackground="WhiteSmoke"/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.Header>
+                            <Grid Background="Black">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Name" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Margin="10" 
+                                                                            TextWrapping="Wrap" Foreground="White" Grid.Column="0" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Phone Number" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Margin="10"
+                                                                            TextWrapping="Wrap" Foreground="White" Grid.Column="1" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding EventFullName}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding EventPhoneNumber}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

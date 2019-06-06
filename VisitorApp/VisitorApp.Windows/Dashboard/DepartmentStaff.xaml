@@ -1,0 +1,473 @@
+﻿<Page
+    x:Class="VisitorApp.Dashboard.DepartmentStaff"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp.Dashboard"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Loaded="Page_Loaded">
+
+    <Grid Background="CadetBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--Header-->
+        <Grid Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.65"/>
+            </Grid.Background>
+            <!--Logo-->
+            <StackPanel Orientation="Horizontal" Margin="20,5,5,5">
+                <Border BorderThickness="0" Height="75" Width="150">
+                    <Image Source="/Assets/Images/SplashScreen scale Design 2 White.png"/>
+                </Border>
+            </StackPanel>
+            <!--User Button-->
+            <Button x:Name="btnuser" HorizontalAlignment="Right" Margin="5" BorderThickness="0">
+                <Button.Flyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem  x:Name="txbUserName" Text="Item 1" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" Click="txbUserName_Click"/>
+                        <MenuFlyoutSeparator Background="CadetBlue"/>
+                        <MenuFlyoutItem x:Name="btnSignOut" Text="Sign Out" Background="CadetBlue" Foreground="White" FontWeight="Bold" Click="btnSignOut_Click" HorizontalContentAlignment="Center"/>
+                    </MenuFlyout>
+                </Button.Flyout>
+                <Ellipse Height="50" Width="50">
+                    <Ellipse.Fill>
+                        <ImageBrush x:Name="imgUserPhoto" ImageSource="/Assets/Images/user White.png" Stretch="Fill"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Button>
+
+            <!--Company Name-->
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                <TextBlock x:Name="txbUserCompanyName" Text="Juj" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" 
+                               FontSize="32" FontWeight="Bold" Margin="0,0,10,0" TextAlignment="Right"/>
+                <Border Height="100" Width="100" HorizontalAlignment="Left" BorderThickness="0">
+                    <Image x:Name="imgCompanyLogo" Source="/Assets/AIICOLogo.png" Stretch="Fill"/>
+                </Border>
+
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" 
+                  HorizontalAlignment="Center" Margin="5">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" 
+                  HorizontalAlignment="Center" Margin="5">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock x:Name="txbDeptName" FontSize="40" Margin="5" Foreground="Yellow" FontWeight="Bold"/>
+                            <TextBlock Text=" Department" FontSize="40" Margin="5" Foreground="Yellow" FontWeight="Bold"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <TextBlock Text="Number of staff: " Margin="5" FontSize="20"/>
+                            <TextBlock x:Name="txbDeptSize" Margin="5" FontSize="20" Foreground="Yellow" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Row="0">
+                                <Button x:Name="btnShowAddNewStaff" Click="btnShowAddNewStaff_Click" ToolTipService.ToolTip="Add new Staff to this Department" 
+                                        BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Border Margin="2" Height="25" Width="25">
+                                            <Image Source="/Assets/Images/add White.png"/>
+                                        </Border>
+                                        <!--<TextBlock Text="Add new Staff" FontSize="12" Margin="2" VerticalAlignment="Center"/>-->
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="btnShowEditDept" Click="btnEditDept_Click" ToolTipService.ToolTip="Edit this Department" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Border Margin="2" Height="25" Width="25">
+                                            <Image Source="/Assets/Images/pencil - White.png"/>
+                                        </Border>
+                                        <!--<TextBlock Text="Add new Staff" FontSize="12" Margin="2" VerticalAlignment="Center"/>-->
+                                    </StackPanel>
+                                </Button>
+                                <Button x:Name="btnShowMoveDeptStaff" Click="btnShowMoveDeptStaff_Click" ToolTipService.ToolTip="Move staff of this Department to another department" 
+                                BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal" >
+                                        <Border Margin="2" Height="25" Width="25">
+                                            <Image Source="/Assets/Images/exchange-arrows white.png"/>
+                                        </Border>
+                                        <!--<TextBlock Text="Add new Staff" FontSize="12" Margin="2" VerticalAlignment="Center"/>-->
+                                    </StackPanel>
+                                </Button>
+                                <!--Delete Item Detail-->
+                                <Button x:Name="btnDeleteDept" Width="50" Height="50" BorderThickness="0" 
+                                                ToolTipService.ToolTip="Delete Department Details" Click="btnDeleteDept_Click">
+                                    <Image Source="/Assets/images/delete-button white.png" Height="auto" Width="auto"/>
+                                </Button>
+                                <!--<Button x:Name="btnShowAddNewStaffList" Click="btnShowAddNewStaffList_Click">
+                            <StackPanel Orientation="Horizontal" >
+                                <Border Margin="2" Height="25" Width="25">
+                                    <Image Source="/Assets/Images/add-2 White.png"/>
+                                </Border>
+                                <TextBlock Text="Upload new Deprtment List" FontSize="12" Margin="2" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </Button>-->
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1" Background="White">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackRenameDept" Visibility="Collapsed">
+                                    <Button Content="^" ToolTipService.ToolTip="Close Panel" FontSize="20" Margin="5" Background="Brown" Foreground="Black" 
+                                            Click="ButtonClose_Click"/>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Department Name" FontSize="20" Foreground="Black" Margin="5" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="txtDeptName" FontSize="20" Width="350" BorderBrush="Gray" TextWrapping="Wrap" Background="WhiteSmoke" Margin="5" 
+                                                 VerticalAlignment="Center" Foreground="Black"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Horizontal" Margin="5">
+                                        <TextBlock Text="Department Phone Number" FontSize="20" Foreground="Black" Margin="5" VerticalAlignment="Center"/>
+                                        <TextBox x:Name="txtDeptPhoneNumber" FontSize="20" Width="350" BorderBrush="Gray" TextWrapping="Wrap" Background="WhiteSmoke" 
+                                                 Margin="5" VerticalAlignment="Center" Foreground="Black"/>
+                                    </StackPanel>
+                                    <Button x:Name="btnUpdateDeptDetails" Content="UPDATE" Foreground="Black" Background="CadetBlue" BorderThickness="0" 
+                                            Click="btnUpdateDeptDetails_Click" Margin="5"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" x:Name="stackMoveDept" Visibility="Collapsed">
+                                    <Button Content="^" ToolTipService.ToolTip="Close Panel" FontSize="20" Margin="5" Background="Brown" Foreground="Black" 
+                                            Click="ButtonClose_Click"/>
+                                    <TextBlock Text="Move to Department: " VerticalAlignment="Center" Margin="5" Foreground="Black" FontSize="20"/>
+                                    <ComboBox x:Name="cmbMoveToDepts" VerticalAlignment="Center" Margin="5" Foreground="Black" FontSize="20" Width="450" BorderBrush="Gray"
+                                              Background="WhiteSmoke"/>
+                                    <Button x:Name="btnMoveDeptStaff" Content="MOVE" Foreground="Black" Background="CadetBlue" BorderThickness="0" 
+                                            Click="btnMoveDeptStaff_Click" Margin="5"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="btnBack" Content="BACK" BorderBrush="Yellow" HorizontalAlignment="Left" 
+                        Foreground="Yellow" BorderThickness="1" VerticalAlignment="Top" Margin="15" Click="btnBack_Click" FontSize="25"/>
+            </Grid>
+
+            <Grid Grid.Row="1" Background="White">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                
+                <!--Display List-->
+                <Grid Grid.Column="0" Margin="10" Background="White" Visibility="Visible" x:Name="GridStaffList">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ListView x:Name="LstStaff" CanReorderItems="True" IsItemClickEnabled="True" 
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto" Grid.Row="1" ItemClick="LstStaff_ItemClick">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" >
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListViewItem">
+                                            <ListViewItemPresenter SelectedBackground="CadetBlue" PointerOverBackground="LightGray"/>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.Header>
+                            <Grid Background="Black">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Staff" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="10" 
+                                            TextWrapping="Wrap" Foreground="White" Grid.Column="0" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Phone Number" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="10"
+                                            TextWrapping="Wrap" Foreground="White" Grid.Column="1" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Email" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="10" 
+                                            TextWrapping="Wrap" Foreground="White" Grid.Column="2" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Status" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="10"
+                                            TextWrapping="Wrap" Foreground="White" Grid.Column="5" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Role" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="10"
+                                            TextWrapping="Wrap" Foreground="White" Grid.Column="4" HorizontalAlignment="Left"/>
+                                <TextBlock Text="Staff ID No" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="16" Margin="10" 
+                                            TextWrapping="Wrap" Foreground="White" Grid.Column="3" HorizontalAlignment="Left"/>
+                            </Grid>
+                        </ListView.Header>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding StaffName}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="0"/>
+                                    <TextBlock Text="{Binding StaffPhoneNumber}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="1"/>
+                                    <TextBlock Text="{Binding StaffEmail}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="2"/>
+                                    <TextBlock Text="{Binding StaffStatus}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="5"/>
+                                    <TextBlock Text="{Binding Roles}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="4"/>
+                                    <TextBlock Text="{Binding StaffIdNumber}" TextAlignment="Left" VerticalAlignment="Center" Margin="10"
+                                                                TextWrapping="Wrap" Foreground="Black" Grid.Column="3"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+
+                <!--Add One Staff-->
+                <Grid Grid.Column="1" Margin="10" Visibility="Collapsed" x:Name="GridAddNewStaff">
+                    <Border BorderThickness="2" BorderBrush="CadetBlue" CornerRadius="15" Background="WhiteSmoke">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Button x:Name="btnCloseAddStaff" Content="X" ToolTipService.ToolTip="Go Back" Width="45" Height="45" VerticalAlignment="Top" Background="CadetBlue"
+                                        Grid.Row="0" Margin="2" Foreground="White" FontWeight="Bold" Visibility="Visible" Click="btnCloseAddStaff_Click" ToolTipService.Placement="Mouse" />
+                            <ScrollViewer Margin="1" Grid.Row="1">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="25">
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                        <TextBlock  Text="First Name" FontSize="32" Foreground="Black"  TextWrapping="Wrap"/>
+                                        <TextBox x:Name="txtStaffFirstName" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" 
+                                                    Width="450" BorderBrush="Black"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                        <TextBlock  Text="Last Name" FontSize="32" Foreground="Black"  TextWrapping="Wrap"/>
+                                        <TextBox x:Name="txtStaffLastName" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" 
+                                                    Width="450" BorderBrush="Black"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left"  Margin="10">
+                                        <TextBlock  Text="Staff Phone Number" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                        <TextBox  x:Name="txtStaffPhoneNumber" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" MaxLength="15"
+                                                    Width="450" BorderBrush="Black" KeyUp="txtCheckNumber_KeyUp"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                        <TextBlock  Text="Staff ID Number" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                        <TextBox  x:Name="txtStaffIdNumber" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  
+                                            Width="450" BorderBrush="Black" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                        <TextBlock  Text="Staff Email" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                        <TextBox  x:Name="txtStaffEmail" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  
+                                            Width="450" BorderBrush="Black" />
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                        <TextBlock  Text="Temporal Password" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                        <TextBox  x:Name="txtTempPassword" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  
+                                            Width="450" BorderBrush="Black" />
+                                    </StackPanel>
+                                    <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10" Visibility="Collapsed">
+                                        <TextBlock  Text="Department Name" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                        <ComboBox  x:Name="cmbDeptName"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" 
+                                            Width="450" BorderBrush="Black" />
+                                    </StackPanel>-->
+                                    <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                        <TextBlock  Text="Role" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                        <ComboBox  x:Name="cmbStaffRole"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" 
+                                            Width="450" BorderBrush="Black" />
+                                    </StackPanel>
+                                    <Border Margin="10">
+                                        <StackPanel HorizontalAlignment="Center">
+                                            <Border Background="White" >
+                                                <Image x:Name="imgNewStaffPicture" Width="150" Height="150" Margin="10"/>
+                                            </Border>
+                                            <Button x:Name="btnSelectStaffPicture" Content="Select New Staff Photo" HorizontalAlignment="Center" VerticalAlignment="Center" Background="CadetBlue" Foreground="Black" Click="btnSelectStaffPicture_Click"/>
+                                        </StackPanel>
+                                    </Border>
+                                    <Button x:Name="btnAddNewStaff" Content="Add Staff" Background="CadetBlue" HorizontalAlignment="Right" Click="btnAddNewStaff_Click"/>
+                                </StackPanel>
+                            </ScrollViewer>
+                        </Grid>
+                    </Border>
+                </Grid>
+
+                <!--Detail of each staff-->
+                <Grid Grid.Column="1" x:Name="GridItemDetail" Visibility="Collapsed">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Detail Individual Items Options-->
+                    <Grid>
+                        <!--Close Detail Grid-->
+                        <StackPanel Background="Brown" VerticalAlignment="Top" HorizontalAlignment="Center">
+                            <Button Name="btnItemDetailClose" Content="X" Background="Brown"  Click="btnItemDetailClose_Click"
+                                            Foreground="White" FontWeight="Bold"/>
+                        </StackPanel>
+                        <!--Edit or Delete Item Detail-->
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Right">
+                            <StackPanel.ChildrenTransitions>
+                                <TransitionCollection>
+                                    <PaneThemeTransition Edge="Left"/>
+                                </TransitionCollection>
+                            </StackPanel.ChildrenTransitions>
+
+                            <!--Edit Item Detail-->
+                            <StackPanel Background="Brown" Margin="0,5,0,5">
+                                <Button x:Name="btnEditUserDetails" BorderThickness="0" Background="Brown" Width="50" Height="50" 
+                                                ToolTipService.ToolTip="Edit Staff Details" Click="btnEditStaffDetails_Click">
+                                    <Image Source="/Assets/images/pencil - White.png" Height="auto" Width="auto"/>
+                                </Button>
+                            </StackPanel>
+
+                            <!--Activate Staff Detail-->
+                            <StackPanel Background="Brown" Margin="0,5,0,5">
+                                <Button x:Name="btnActiveStaffDetails" Width="50" Height="50" BorderThickness="0" 
+                                                                ToolTipService.ToolTip="Mark Staff as Active" Click="btnActiveStaffDetails_Click">
+                                    <Image Source="/Assets/images/Done - White.png" Height="auto" Width="auto"/>
+                                </Button>
+                            </StackPanel>
+
+                            <StackPanel Background="Brown" Margin="0,5,0,5">
+                                <Button x:Name="btnChangeStaffDept" Width="50" Height="50" BorderThickness="0" 
+                                                ToolTipService.ToolTip="Change Staff Department" Click="btnChangeStaffDept_Click">
+                                    <Image Source="/Assets/images/exchange-arrows white.png" Height="auto" Width="auto"/>
+                                </Button>
+                            </StackPanel>
+
+                            <!--Suspend Staff Detail-->
+                            <StackPanel Background="Brown" Margin="0,5,0,5">
+                                <Button x:Name="btnSuspendStaffDetails" Width="50" Height="50" BorderThickness="0" 
+                                                ToolTipService.ToolTip="Mark Staff as Suspended" Click="btnSuspendStaffDetails_Click">
+                                    <Image Source="/Assets/images/Suspended - White.png" Height="auto" Width="auto"/>
+                                </Button>
+                            </StackPanel>
+
+                            <!--Delete Item Detail-->
+                            <StackPanel Background="Brown" Margin="0,5,0,5">
+                                <Button x:Name="btnDeleteUserDetails" Width="50" Height="50" BorderThickness="0" 
+                                                ToolTipService.ToolTip="Remove Staff Details" Click="btnDeleteStaffDetails_Click">
+                                    <Image Source="/Assets/images/delete-button white.png" Height="auto" Width="auto"/>
+                                </Button>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Item Details-->
+                    <Grid x:Name="GridEditItemDetail" Grid.Column="1" Visibility="Collapsed">
+                        <Grid Background="LightGray">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border Margin="10" Grid.Row="0">
+                                <StackPanel HorizontalAlignment="Center">
+                                    <Border Background="White" >
+                                        <Image x:Name="imgClickedItemStaffPicture" Width="150" Height="150" Margin="10"/>
+                                    </Border>
+                                    <Button x:Name="btnClickedItemSelectStaffPicture" Content="Select Staff Photo" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                                    Background="CadetBlue" Foreground="Black" Click="btnClickedItemSelectStaffPicture_Click"/>
+                                </StackPanel>
+                            </Border>
+                            <ScrollViewer Grid.Row="1">
+                                <StackPanel Orientation="Vertical" Margin="5">
+                                    <StackPanel x:Name="StackPanelItemDetail" Orientation="Vertical" Margin="5,5,5,5" >
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="First Name: " HorizontalAlignment="Center" Margin="5,5,5,5" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                                            <TextBox x:Name="txtClickedItemStaffFirstName" HorizontalAlignment="Stretch" Margin="5,5,5,5" FontSize="20" TextWrapping="Wrap" Background="White"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Last Name: " HorizontalAlignment="Center" Margin="5,5,5,5" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                                            <TextBox x:Name="txtClickedItemStaffLastName" HorizontalAlignment="Stretch" Margin="5,5,5,5" FontSize="20" TextWrapping="Wrap" Background="White"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Phone Number: " HorizontalAlignment="Center" Margin="5,5,5,5" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                                            <TextBox x:Name="txtClickedItemStaffPhoneNumber" HorizontalAlignment="Stretch" Margin="5,5,5,5" FontSize="20" TextWrapping="Wrap" Background="White"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Staff ID Number: " HorizontalAlignment="Center" Margin="5,5,5,5" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                                            <TextBox x:Name="txtClickedItemStaffIdNumber" HorizontalAlignment="Stretch" Margin="5,5,5,5" FontSize="20" TextWrapping="Wrap" Background="White"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Email: " HorizontalAlignment="Center" Margin="5,5,5,5" FontSize="20" Foreground="Black" FontWeight="Bold"/>
+                                            <TextBox x:Name="txtClickedItemEmail" HorizontalAlignment="Stretch" Margin="5,5,5,5" FontSize="20" TextWrapping="Wrap" Background="White"/>
+                                        </StackPanel>
+                                        <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                            <TextBlock  Text="Department Name" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                            <ComboBox  x:Name="cmbClickedItemDeptName"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" 
+                                            Width="450" BorderBrush="Black" Visibility="Collapsed"/>
+                                        </StackPanel>-->
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="10">
+                                            <TextBlock  Text="Role" FontSize="32" Foreground="Black" TextWrapping="Wrap"/>
+                                            <ComboBox  x:Name="cmbClickedItemStaffRole"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" 
+                                            Width="450" BorderBrush="Black" />
+                                        </StackPanel>
+
+                                    </StackPanel>
+                                </StackPanel>
+                            </ScrollViewer>
+
+                            <!--Update Item Details-->
+                            <Button Grid.Row="2" x:Name="btnUpdate" HorizontalAlignment="Stretch" Content="UPDATE" Background="CadetBlue" FontWeight="Bold" Click="btnUpdateStaff_Click"/>
+                        </Grid>
+                    </Grid>
+
+                    <!--Move Staff-->
+                    <Grid Background="LightGray" x:Name="GridMoveStaff" Visibility="Collapsed" Grid.Column="1" Margin="5">
+                        <Grid Margin="25">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Moving Staff" Margin="10" Grid.Row="0" FontSize="30" Foreground="Yellow" FontWeight="Bold"/>
+                            <ScrollViewer Grid.Row="1" Margin="5">
+                                <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <TextBlock Text="Staff name:" FontSize="20" Foreground="Black"/>
+                                        <TextBlock x:Name="txbMovingStaffName" Foreground="CadetBlue" FontWeight="Bold" TextWrapping="Wrap" FontSize="20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <TextBlock Text="Staff ID Number" FontSize="20" Foreground="Black"/>
+                                        <TextBlock x:Name="txbMovingStaffId" Foreground="CadetBlue" FontWeight="Bold" TextWrapping="Wrap" FontSize="20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <TextBlock Text="Staff Phone Number" FontSize="20" Foreground="Black"/>
+                                        <TextBlock x:Name="txbMovingStaffPhoNo" Foreground="CadetBlue" FontWeight="Bold" TextWrapping="Wrap" FontSize="20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <TextBlock Text="Staff Current Department" FontSize="20" Foreground="Black"/>
+                                        <TextBlock x:Name="txbMovingStaffDept" Foreground="CadetBlue" FontWeight="Bold" TextWrapping="Wrap" FontSize="20"/>
+                                    </StackPanel>
+                                    <StackPanel Orientation="Vertical" Margin="5">
+                                        <TextBlock Text="Move to department" FontSize="20" Foreground="Black"/>
+                                        <ComboBox x:Name="cmbMovingNewDept" Foreground="Black" Background="White" Language="en-US" FontSize="20" Width="400"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </ScrollViewer>
+
+                            <!--Button Move-it-->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"  Grid.Row="2" Margin="5">
+                                <Button x:Name="btnMoveStaffDept" Content="Move Staff" Click="btnMoveStaffDept_Click" Margin="5" Foreground="CadetBlue" Background="Transparent"
+                                            BorderBrush="CadetBlue"/>
+                                <Button x:Name="btnMoveCancel" Content="Cancel Staff" Click="btnMoveCancel_Click" Margin="5" Foreground="Brown" 
+                                            Background="Transparent" BorderBrush="Brown"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

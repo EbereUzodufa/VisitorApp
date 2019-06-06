@@ -1,12 +1,9 @@
-﻿using VisitorApp.Data;
-using VisitorApp.Common;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
+using VisitorApp.Common;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -17,35 +14,21 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Universal Hub Application project template is documented at http://go.microsoft.com/fwlink/?LinkID=391955
+// The Group Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234229
 
 namespace VisitorApp
 {
     /// <summary>
-    /// A page that displays details for a single item within a group.
+    /// A page that displays an overview of a single group, including a preview of the items
+    /// within the group.
     /// </summary>
-    public sealed partial class ItemPage : Page
+    public sealed partial class GroupDetailPage1 : Page
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
 
-        public ItemPage()
-        {
-            this.InitializeComponent();
-            this.navigationHelper = new NavigationHelper(this);
-            this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
-        }
-
         /// <summary>
-        /// Gets the NavigationHelper used to aid in navigation and process lifetime management.
-        /// </summary>
-        public NavigationHelper NavigationHelper
-        {
-            get { return this.navigationHelper; }
-        }
-
-        /// <summary>
-        /// Gets the DefaultViewModel. This can be changed to a strongly typed view model.
+        /// This can be changed to a strongly typed view model.
         /// </summary>
         public ObservableDictionary DefaultViewModel
         {
@@ -53,49 +36,65 @@ namespace VisitorApp
         }
 
         /// <summary>
+        /// NavigationHelper is used on each page to aid in navigation and 
+        /// process lifetime management
+        /// </summary>
+        public NavigationHelper NavigationHelper
+        {
+            get { return this.navigationHelper; }
+        }
+
+
+        public GroupDetailPage1()
+        {
+            this.InitializeComponent();
+            this.navigationHelper = new NavigationHelper(this);
+            this.navigationHelper.LoadState += navigationHelper_LoadState;
+        }
+
+        private void InitializeComponent()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
         /// </summary>
         /// <param name="sender">
-        /// The source of the event; typically <see cref="NavigationHelper"/>
+        /// The source of the event; typically <see cref="Common.NavigationHelper"/>
         /// </param>
         /// <param name="e">Event data that provides both the navigation parameter passed to
-        /// <see cref="Frame.Navigate(Type, object)"/> when this page was initially requested and
+        /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private async void NavigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = await SampleDataSource.GetItemAsync((string)e.NavigationParameter);
-            this.DefaultViewModel["Item"] = item;
+            // TODO: Assign a bindable group to this.DefaultViewModel["Group"]
+            // TODO: Assign a collection of bindable items to this.DefaultViewModel["Items"]
         }
 
         #region NavigationHelper registration
 
-        /// <summary>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
+        /// 
         /// Page specific logic should be placed in event handlers for the  
         /// <see cref="Common.NavigationHelper.LoadState"/>
         /// and <see cref="Common.NavigationHelper.SaveState"/>.
         /// The navigation parameter is available in the LoadState method 
         /// in addition to page state preserved during an earlier session.
-        /// </summary>
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedTo(e);
+            navigationHelper.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            this.navigationHelper.OnNavigatedFrom(e);
+            navigationHelper.OnNavigatedFrom(e);
         }
 
         #endregion
-
-        private void pageTitle_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

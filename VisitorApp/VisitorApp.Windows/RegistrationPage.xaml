@@ -21,60 +21,91 @@
     <!--
         This grid acts as a root panel for the page.
     -->
-    <Grid>
+    <Grid Background="CadetBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="172*"/>
-            <RowDefinition Height="89*"/>
-            <RowDefinition Height="93*"/>
-            <RowDefinition Height="48*"/>
-            <RowDefinition Height="102*"/>
-            <RowDefinition Height="124*"/>
-            <RowDefinition Height="107*"/>
-            <RowDefinition Height="33*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF28629C" Offset="0"/>
-                <GradientStop Color="#FF5E7CE4" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="124*"/>
-            <ColumnDefinition Width="211*"/>
-            <ColumnDefinition Width="551*"/>
-            <ColumnDefinition Width="29*"/>
-            <ColumnDefinition Width="440*"/>
-            <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="0*"/>
+        <!--Header-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                <Image Grid.Column="1" Source="Assets/AIICOLogo.png" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="225" Width="225"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock x:Name="txbTitle"  Text="Welcome To AIICO Insurance" Foreground="Yellow" FontSize="56" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txtPageTitle" Text="Visitor Registration" HorizontalAlignment="Center" FontSize="50"/>
+                    <TextBlock x:Name="txbUserName" VerticalAlignment="Center" Foreground="Black" IsHitTestVisible="false" TextWrapping="Wrap" Margin="10" FontSize="32"/>
+                </StackPanel>
+            </StackPanel>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
+                        <Button x:Name="btnHome" Margin="5" HorizontalAlignment="Center" Height="100" Width="100" FontSize="25" FontWeight="Bold" Click="btnHome_Click" ToolTipService.ToolTip="Home"
+                                ToolTipService.Placement="Mouse">
+                            <Border BorderThickness="0">
+                                <Image Source="Assets/images/HomePage black.png" HorizontalAlignment="Center"/>
+                            </Border>
+                        </Button>
+                    </StackPanel>
+            </Grid>
+        </Grid>
 
-        </Grid.ColumnDefinitions>
-        <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
-            VerticalAlignment="Stretch"
-            Command="{Binding NavigationHelper.Home, ElementName=pageRoot}"
-            AutomationProperties.Name="Home"
-            AutomationProperties.AutomationId="BackButton"
-            AutomationProperties.ItemType="Navigation Button" Width="41" Margin="0,40,33,79" HorizontalAlignment="Right" Click="BackButton_Click" Background="White" RequestedTheme="Dark" Content=""/>
-        <Image Source="Assets/AIICOLogo.png" RenderTransformOrigin="0.5,0.5" Margin="59,31,27,32" Grid.Column="1"   />
-        <TextBlock x:Name="Title"  Text="Welcome To AIICON Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="90,31,142,100" Grid.Column="2" Grid.ColumnSpan="3"  />
-        <TextBlock x:Name="CheckIn" Text="Visitor Registration" Style="{StaticResource HeaderTextBlockStyle}" Foreground="White"  FontWeight="Bold" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="215,88,299,33" RenderTransformOrigin="0.941,-0.412" Grid.Column="2" Grid.ColumnSpan="3" />
-        <Border Margin="10,0" HorizontalAlignment="Center" Width="420" Height="333" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="White" Background="Black" Grid.RowSpan="5" Grid.Column="4" Tapped="PhotoTapped">
-            <Image x:Name="PhotoControl" Margin="12,14,12,18" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="1" Stretch="Fill" />
-        </Border>
-        <TextBlock  Text="Full Name" FontSize="40" Foreground="White" Margin="23,26,26,16" Grid.Row="2" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="txtFullName" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" Margin="14,26,29,13" Grid.Row="2" Grid.Column="2"/>
-        <TextBlock  Text="Phone Number" FontSize="40" Foreground="White" Margin="23,20,26,31" Grid.Row="4" Grid.ColumnSpan="2"/>
-        <TextBox  x:Name="txtPhoneNumber" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  Margin="14,17,29,31" Grid.Row="4" Grid.Column="2"/>
-        <TextBlock  Text="Email" FontSize="40" Foreground="White" Margin="23,41,26,45" Grid.Row="5" Grid.ColumnSpan="2" />
-        <TextBox x:Name="txtEmail"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  Margin="14,31,29,39" Grid.Row="5" Grid.Column="2" Height="54"/>
-        <TextBlock  Text="Company Name" FontSize="40" Foreground="White" Margin="23,24,0,12" HorizontalAlignment="Left" Width="285" Grid.Row="6" Grid.ColumnSpan="2" />
-        <TextBox  x:Name="txtCompanyName"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  Margin="14,19,29,34" Grid.Row="6" Grid.Column="2" Height="54"/>
-        <Button x:Name="DoneButton"  Foreground="White"  FontSize="40"  Content="Register"  Margin="7,7,7,10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="RegisterButton_Click" Grid.Column="4" Grid.Row="6" Height="90"/>
-        <Button x:Name="PhotoButton"  Foreground="White"  FontSize="40" Content="Photo"  Margin="7,21,7,13" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="PhotoButton_Click" Grid.Column="4" Grid.Row="5"/>
+        <!--Body-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <!--Fields-->
+            <Grid Grid.Column="0" Margin="10">
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Text="Full Name" FontSize="40" Foreground="White" Margin="10" Width="300"/>
+                        <TextBox x:Name="txtFullName" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30" Margin="10" KeyUp="txtFullName_KeyUp" 
+                                 Width="500"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Text="Phone Number" FontSize="40" Foreground="White" Margin="10" Width="300"/>
+                        <TextBox  x:Name="txtPhoneNumber" TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  Margin="10" MaxLength="12"
+                                  Width="500" KeyUp="txtPhoneNumber_KeyUp"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Text="Email" FontSize="40" Foreground="White" Margin="10" Width="300" />
+                        <TextBox x:Name="txtEmail"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  Margin="10" Width="500"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock  Text="Company Name" FontSize="40" Foreground="White" Margin="10" HorizontalAlignment="Left" Width="300" />
+                        <TextBox  x:Name="txtCompanyName"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="30"  Margin="10"  Width="500"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            
+            <!--Pictures-->
+            <Grid Grid.Column="1" Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <Border  Grid.Row="0" Margin="10" HorizontalAlignment="Center" Width="300" Height="300" VerticalAlignment="Center" BorderThickness="1" BorderBrush="White" Background="LightGray"
+                              ToolTipService.ToolTip="Click to Add Images" ToolTipService.Placement="Mouse" Tapped="PhotoTapped">
+                        <Image x:Name="PhotoControl" Margin="10" Grid.Row="1" Canvas.ZIndex="1" Stretch="Fill" />
+                    </Border>
+                    <Button Grid.Row="1" x:Name="PhotoButton"  Foreground="White"  FontSize="28" Content="Choose Photo"  Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="PhotoButton_Click"/>
+                    <Button Grid.Row="2" x:Name="DoneButton"  Foreground="White"  FontSize="40"  Content="Register"  Margin="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="RegisterButton_Click" />
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </Page>

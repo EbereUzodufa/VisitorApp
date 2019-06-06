@@ -1,21 +1,8 @@
 ﻿using VisitorApp.Data;
 using VisitorApp.Common;
-
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Windows.Input;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System;
 
 namespace VisitorApp
 {
@@ -34,6 +21,11 @@ namespace VisitorApp
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += this.NavigationHelper_LoadState;
         }
+
+        //private void InitializeComponent()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         /// <summary>
         /// Gets the NavigationHelper used to aid in navigation and process lifetime management.
@@ -80,7 +72,7 @@ namespace VisitorApp
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemPage), itemId);
+            //this.Frame.Navigate(typeof(ItemPage), itemId);
         }
 
         #region NavigationHelper registration

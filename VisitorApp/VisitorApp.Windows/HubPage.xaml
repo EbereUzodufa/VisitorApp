@@ -8,7 +8,9 @@
     xmlns:data="using:VisitorApp.Data"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"  > 
+    <!--Loaded="HubPage_Loaded"-->
+  
 
     <Page.Resources>
         <!-- Grid-appropriate 310 by 260 pixel item template as seen in section 4 -->
@@ -18,74 +20,64 @@
     <!--
     This grid acts as a root panel for the page.
   -->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <EntranceThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
+    <Grid Background="CadetBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+        <!--Head-->
+        <Grid Grid.Row="0" Margin="30,30" VerticalAlignment="Bottom">
+            <StackPanel Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <!--<TextBlock x:Name="Title"  Text="WELCOME TO VISITOR MANAGER" Foreground="Yellow" FontSize="50" HorizontalAlignment="Center"/>-->
+                <TextBlock x:Name="txtTitle" Text="LOGIN" Foreground="Yellow" FontSize="150" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
 
-        </Grid.ColumnDefinitions>
-
-        <Hub SectionHeaderClick="Hub_SectionHeaderClick" Grid.Column="0">
-            <Hub.Header>
-                <!-- Back button and page title -->
-                <Grid Width="1836" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="559*"/>
-                        <ColumnDefinition Width="1277*"/>
-
-                    </Grid.ColumnDefinitions>
-                    <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
-                        VerticalAlignment="Top"
-                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button" Height="41" Width="41"/>
-                    <Image Source="Assets/AIICOLogo.png"  Grid.Column="0" RenderTransformOrigin="0.5,0.5" Margin="0,41,0,20"   />
-
-                </Grid>
-            </Hub.Header>
-            <HubSection Width="683">
-                <HubSection.Background>
-                    <ImageBrush ImageSource="Assets/Ocean.jpg" Stretch="UniformToFill" />
-                </HubSection.Background>
-
-            </HubSection>
-        </Hub>
-        <Grid Grid.Column="1" Margin="46,73,10,0" >
+        <!--Body-->
+        <Grid Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="610*"/>
-                <ColumnDefinition Width="17*"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="50*"/>
-                <RowDefinition Height="49*"/>
-                <RowDefinition Height="115*"/>
-                <RowDefinition Height="118*"/>
-                <RowDefinition Height="118*"/>
-                <RowDefinition Height="123*"/>
-                <RowDefinition Height="115*"/>
-                <RowDefinition Height="7*"/>
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="Title"  Text="Welcome To AIICO Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" 
-                        VerticalAlignment="Top" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap"   Height="40" Grid.ColumnSpan="2"  />
 
-            <TextBlock x:Name="CheckIn"  Text="Check In/Check Out" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" 
-                        VerticalAlignment="Top" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap"   Height="40" Margin="143,0,0,0" Grid.ColumnSpan="2"  />
+            <Grid Grid.Column="0">
+                <Border BorderThickness="0" Margin="50" Height="300">
+                    <Image Source="Assets/Images/SplashScreen scale Design 2 White.png" />
+                </Border>
+            </Grid>
 
-
-            <Button x:Name="FirstTimeButton"  Foreground="White"  FontSize="50"    Content="First Time"  Grid.Row="2" Click="FirstTimeButton_Click" Margin="-3,7,7,8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-            <Button x:Name="RegisteredButton"  Foreground="White" Content="Registered No Invitation" FontSize="50" Grid.Row="3" Click="RegisteredButton_Click" Margin="-3,7,7,11" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
-            <Button x:Name="InvitationButton"  Foreground="White"  FontSize="50"  Content="I Have invitation" Grid.Row="4"  Click="InvitationButton_Click" Margin="-3,10,7,8.156" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="100"/>
-            <Button x:Name="PhotoButton"  Foreground="White"  FontSize="50"  Content="Photo Capture" Grid.Row="5"  Click="PhotoButton_Click" Margin="-3,12,7,11" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="100"/>
-
-            <Button x:Name="CheckOutButton"  Foreground="White"  FontSize="60"  Content="Check Out" Grid.Row="6"  Click="CheckOutButton_Click" Margin="-3,13,7,2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-
+            <Grid Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Username:" Width="200" TextAlignment="Left" FontSize="32" FontWeight="Bold" Margin="5"/>
+                        <TextBox x:Name="txtUserName" Width="500" TextAlignment="Left" FontSize="32" Margin="5" SelectionHighlightColor="CadetBlue" KeyDown="txtEnter_KeyDown"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="5">
+                        <TextBlock Text="Password:" Width="200" TextAlignment="Left" FontSize="32" FontWeight="Bold" Margin="5" />
+                        <PasswordBox x:Name="txtPassword" Width="500" FontSize="32" Margin="5" IsPasswordRevealButtonEnabled="True" SelectionHighlightColor="CadetBlue" 
+                                     KeyDown="txtEnter_KeyDown"/>
+                    </StackPanel>
+                    <StackPanel  Margin="15,0" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal">
+                            <Button x:Name="btnForgotPassword" BorderThickness="0,0,0,2" Content="Forgot Password" Margin="5" FontSize="32" Click="btnForgotPassword_Click"/>
+                            <Button x:Name="btnLogin" Content="Login" HorizontalAlignment="Right" Margin="5" FontSize="32" Click="btnLogin_Click" BorderThickness="0,0,0,2"
+                                Foreground="Yellow"/>
+                        </StackPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Grid.Row="1" Visibility="Visible">
+            <Button x:Name="btnNewCompany" Content="Register Your Company" HorizontalAlignment="Center" Margin="15" FontSize="32" Click="btnNewCompany_Click">
+                <Button.Background>
+                    <SolidColorBrush Color="Yellow" Opacity="0.3"/>
+                </Button.Background>
+            </Button>
+            <Border BorderThickness="0" Margin="5" Width="750" Height="175"  Visibility="Collapsed">
+                <Image Source="Assets/Images/Powered by ViaPhone landscape black.png" />
+            </Border>
         </Grid>
     </Grid>
+
 </Page>

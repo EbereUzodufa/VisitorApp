@@ -1,0 +1,262 @@
+﻿<Page
+    x:Class="VisitorApp.Dashboard.FrontDeskHome"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp.Dashboard"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Grid Background="CadetBlue">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <!--Header-->
+            <Grid Grid.Row="0">
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.65"/>
+                </Grid.Background>
+                <!--Logo-->
+                <StackPanel Orientation="Horizontal" Margin="20,5,5,5">
+                    <Border BorderThickness="0" Height="75" Width="150">
+                        <Image Source="/Assets/Images/SplashScreen scale Design 2 White.png"/>
+                    </Border>
+                </StackPanel>
+                <!--User Button-->
+                <Button x:Name="btnuser" HorizontalAlignment="Right" Margin="5" BorderThickness="0">
+                    <Button.Flyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem  x:Name="txbUserName" Text="Item 1" HorizontalAlignment="Center" Foreground="Black" FontWeight="Bold" Click="txbUserName_Click"/>
+                            <MenuFlyoutSeparator Background="CadetBlue"/>
+                            <MenuFlyoutItem x:Name="btnSignOut" Text="Sign Out" Background="CadetBlue" Foreground="White" FontWeight="Bold" Click="btnSignOut_Click" HorizontalContentAlignment="Center"/>
+                        </MenuFlyout>
+                    </Button.Flyout>
+                    <Ellipse Height="50" Width="50">
+                        <Ellipse.Fill>
+                            <ImageBrush x:Name="imgUserPhoto" ImageSource="/Assets/Images/user White.png" Stretch="Fill"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                </Button>
+
+                <!--Company Name-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                    <TextBlock x:Name="txbUserCompanyName" Text="Juj" HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" 
+                               FontSize="32" FontWeight="Bold" Margin="0,0,10,0" TextAlignment="Right"/>
+                    <Border Height="100" Width="100" HorizontalAlignment="Left" BorderThickness="0">
+                        <Image x:Name="imgCompanyLogo" Source="/Assets/AIICOLogo.png" Stretch="Fill"/>
+                    </Border>
+
+                </StackPanel>
+            </Grid>
+
+            <!--Body-->
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Dashboard Side buttons for Navigation-->
+                <Grid Grid.Column="0">
+                    <StackPanel Orientation="Vertical" Margin="5">
+                        <StackPanel Orientation="Horizontal" x:Name="stackDashboard">
+                            <Rectangle Height="auto" Width="10" Fill="Black"/>
+                            <Button BorderThickness="0" x:Name="btnDashboard" Click="btnDashboard_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/dashboard - White.png"/>
+                                    </Border>
+                                    <TextBlock Text="Dashboard" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackDepartment">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnDepartment" Click="btnDepartment_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/add department White.png" />
+                                    </Border>
+                                    <TextBlock Text="Department" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackStaff">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnStaff" Click="btnStaff_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/add Staff White.png" />
+                                    </Border>
+                                    <TextBlock Text="Staff" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackLocation">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnLocation" Click="btnLocation_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/location White.png" />
+                                    </Border>
+                                    <TextBlock Text="Location" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackAppointment">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnAppointment" Click="btnAppointment_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/appointment White.png" />
+                                    </Border>
+                                    <TextBlock Text="Appointment" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackUpload" Visibility="Collapsed">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnUploadCsv" Click="btnUploadCsv_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/images/Upload CSV - White.png"/>
+                                    </Border>
+                                    <TextBlock Text="Upload Event List" FontWeight="Bold" VerticalAlignment="Center" Margin="5" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackCheckIn">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnCheckIn" Click="btnCheckIn_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/check-sign-in-a-rounded-black-square - White.png" />
+                                    </Border>
+                                    <TextBlock Text="Check-In Guest" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackCheckOut">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnCheckOutGuest" Click="btnCheckOutGuest_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/Checkout - White.png"/>
+                                    </Border>
+                                    <TextBlock Text="Checkout Guest" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackGuestList">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnSeeGuestList" Click="btnSeeGuestList_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/clipboards List - White.png"/>
+                                    </Border>
+                                    <TextBlock Text="See Guest List" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal"  x:Name="stackCompany">
+                            <Rectangle Height="auto" Width="10" Fill="Transparent"/>
+                            <Button BorderThickness="0" x:Name="btnCompSetting" Click="btnCompSetting_Click">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Border BorderThickness="0" Height="25" Width="25">
+                                        <Image Source="/Assets/Images/user-group-button-with-wreath White.png"/>
+                                    </Border>
+                                    <TextBlock Text="Company Profile" FontWeight="Bold" VerticalAlignment="Center" Margin="5"/>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                        <Button Content="Test" HorizontalAlignment="Center" Click="Button_Click" Visibility="Collapsed"/>
+                    </StackPanel>
+                    <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center" >
+                        <HyperlinkButton NavigateUri="http://viaphonenig.com/" ToolTipService.ToolTip="Visit Website?">
+                            <Image x:Name="imgPowered" Height="200" Width="200" Source="/Assets/Images/Powered by ViaPhone black big.png"/>
+                        </HyperlinkButton>
+                    </Grid>
+                </Grid>
+
+                <!--Fill in-->
+                <Grid Grid.Column="1" Background="White" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!--TOp RoW-->
+                    <Grid Grid.Row="0">
+                        <StackPanel Margin="50,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Center" Orientation="Vertical">
+                            <StackPanel Visibility="Collapsed">
+                                <!--Testing get Visitor details from photo number-->
+                                <TextBox x:Name="txtPhono" Width="250" BorderBrush="CadetBlue"/>
+                                <Button x:Name="btnTest" Content="Test" Background="CadetBlue" Click="btnTest_Click"/>
+                            </StackPanel>
+                            <TextBlock Text="Date"  FontSize="24" FontWeight="Bold" TextWrapping="Wrap" Foreground="Black" HorizontalAlignment="Center"/>
+                            <TextBlock x:Name="txbToday" FontSize="24" Text="Tuesday,4/4/2018 " Foreground="Black" HorizontalAlignment="Center" Margin="5"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,50,5" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="btnTodayGuest" Margin="10,10,50,10" BorderBrush="CadetBlue" ToolTipService.ToolTip="Click to See Today's Guest List"
+                                    Click="btnTodayGuest_Click" Background="CadetBlue">
+                                <StackPanel>
+                                    <Grid Background="WhiteSmoke" Height="300" Width="300" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                            <TextBlock x:Name="txbGuestToday" FontSize="56" FontWeight="Bold" Text="0" Foreground="Black" HorizontalAlignment="Center" Margin="5"/>
+                                            <TextBlock Text="Guest were checked in Today." Margin="2" FontSize="26" TextWrapping="Wrap" Foreground="Black" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="btnStillCheckInGuest" Margin="10,10,50,10" BorderBrush="CadetBlue" ToolTipService.ToolTip="Click to See Still Checked In Guest"
+                                    Click="btnStillCheckInGuest_Click" Background="CadetBlue">
+                                <StackPanel>
+                                    <Grid Background="WhiteSmoke" Height="300" Width="300" VerticalAlignment="Center">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                            <TextBlock x:Name="txbStillCheckinGuestToday" FontSize="56" FontWeight="Bold" Text="0" Foreground="Black" HorizontalAlignment="Center" Margin="5"/>
+                                            <TextBlock Text="Guest are still checked In." Margin="2" FontSize="26" TextWrapping="Wrap" Foreground="Black" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <!--Second Row-->
+                    <Grid Grid.Row="1" Margin="10">
+                        <StackPanel Margin="5,5,50,5" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <StackPanel Margin="10,10,50,10">
+                                <Grid Background="CadetBlue" Height="300" Width="300" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                        <TextBlock x:Name="txbGuestthisWeek" FontSize="56" FontWeight="Bold" Text="0" Foreground="White" HorizontalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="Guests were checked in this week." FontSize="26" TextWrapping="Wrap" Foreground="White" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Margin="10,10,50,10">
+                                <Grid Background="CadetBlue" Height="300" Width="300" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                        <TextBlock x:Name="txbGuestthisMonth" FontSize="56" FontWeight="Bold" Text="0" Foreground="White" HorizontalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="Guests were checked in this month." FontSize="26" TextWrapping="Wrap" Foreground="White" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                            <StackPanel Margin="10,10,50,10">
+                                <Grid Background="CadetBlue" Height="300" Width="300" VerticalAlignment="Center">
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" >
+                                        <TextBlock x:Name="txbGuestthisYear" FontSize="56" FontWeight="Bold" Text="0" Foreground="White" HorizontalAlignment="Center" Margin="5"/>
+                                        <TextBlock Text="Guests were checked in this year." FontSize="26" TextWrapping="Wrap" Foreground="White" HorizontalAlignment="Center" TextAlignment="Center"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

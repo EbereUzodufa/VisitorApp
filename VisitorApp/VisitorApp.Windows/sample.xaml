@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="VisitorApp.sample"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:VisitorApp.Common"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <DataTemplate x:Key="GuestListDataTemplate">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <StackPanel Margin="20,20,0,0">
+                    <TextBlock Text="{Binding GuestName}" HorizontalAlignment="Left" FontSize="16" />
+                    <TextBlock Text="{Binding HostName}" HorizontalAlignment="Left" FontSize="10" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,20,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="100" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1" 
+                   Name="ResultTextBlock" 
+                   FontSize="24" 
+                   Foreground="Red" 
+                   FontWeight="Bold" 
+                   Margin="20,20,0,0" />
+        <GridView ItemsSource = "{Binding Guests}"   
+                  IsItemClickEnabled="True" 
+                  ItemTemplate="{StaticResource GuestListDataTemplate}">
+        </GridView>
+    </Grid>
+</Page>

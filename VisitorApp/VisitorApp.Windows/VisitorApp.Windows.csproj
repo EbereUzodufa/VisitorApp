@@ -103,8 +103,74 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="CheckInRegistered.xaml.cs">
-      <DependentUpon>CheckInRegistered.xaml</DependentUpon>
+    <Compile Include="Common\Enum Class.cs" />
+    <Compile Include="Dashboard\Appointment.xaml.cs">
+      <DependentUpon>Appointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\ChooseEvent.xaml.cs">
+      <DependentUpon>ChooseEvent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\CompanyProfile.xaml.cs">
+      <DependentUpon>CompanyProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\DepartmentStaff.xaml.cs">
+      <DependentUpon>DepartmentStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Events.xaml.cs">
+      <DependentUpon>Events.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\Location.xaml.cs">
+      <DependentUpon>Location.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\CheckInGuest.xaml.cs">
+      <DependentUpon>CheckInGuest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\CheckOutGuest.xaml.cs">
+      <DependentUpon>CheckOutGuest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\FrontDeskHome.xaml.cs">
+      <DependentUpon>FrontDeskHome.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\RegisterGuest.xaml.cs">
+      <DependentUpon>RegisterGuest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\SeeGuestList.xaml.cs">
+      <DependentUpon>SeeGuestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\test.xaml.cs">
+      <DependentUpon>test.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\UploadCsvFile.xaml.cs">
+      <DependentUpon>UploadCsvFile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\AddDepartment.xaml.cs">
+      <DependentUpon>AddDepartment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\AddStaff.xaml.cs">
+      <DependentUpon>AddStaff.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard\userProfile.xaml.cs">
+      <DependentUpon>userProfile.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DisplayTV.xaml.cs">
+      <DependentUpon>DisplayTV.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ForgotPassword.xaml.cs">
+      <DependentUpon>ForgotPassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Common\VisitorApp Helper.cs" />
+    <Compile Include="Models\DbListDataClass.cs" />
+    <Compile Include="RegisterNewCompany.xaml.cs">
+      <DependentUpon>RegisterNewCompany.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TestPage.xaml.cs">
+      <DependentUpon>TestPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TV.xaml.cs">
+      <DependentUpon>TV.xaml</DependentUpon>
     </Compile>
     <Compile Include="CheckInWithInvitationPage.xaml.cs">
       <DependentUpon>CheckInWithInvitationPage.xaml</DependentUpon>
@@ -112,23 +178,27 @@
     <Compile Include="CheckOutPage.xaml.cs">
       <DependentUpon>CheckOutPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Common\CheckSyntax.cs" />
     <Compile Include="Common\ImageProcessor.cs" />
+    <Compile Include="Common\Tester.cs" />
+    <Compile Include="Common\VisitorDataSource.cs" />
     <Compile Include="HubPage.xaml.cs">
       <DependentUpon>HubPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="PhotoUpdatePage.xaml.cs">
-      <DependentUpon>PhotoUpdatePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="RegistrationPage.xaml.cs">
       <DependentUpon>RegistrationPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sample.xaml.cs">
+      <DependentUpon>sample.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SectionPage.xaml.cs">
       <DependentUpon>SectionPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ItemPage.xaml.cs">
-      <DependentUpon>ItemPage.xaml</DependentUpon>
+    <Compile Include="UploadCsv.xaml.cs">
+      <DependentUpon>UploadCsv.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Commands\VisisbleNonEmpty.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -138,14 +208,228 @@
     <None Include="VisitorApp.Windows_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Images\add black.png" />
+    <Content Include="Assets\Images\add CadetBlue.png" />
+    <Content Include="Assets\Images\add department Black.png" />
+    <Content Include="Assets\Images\add department CadetBlue.png" />
+    <Content Include="Assets\Images\add department Green.png" />
+    <Content Include="Assets\Images\add department White.png" />
+    <Content Include="Assets\Images\add Green.png" />
+    <Content Include="Assets\Images\add Staff Black.png" />
+    <Content Include="Assets\Images\add Staff CadetBlue.png" />
+    <Content Include="Assets\Images\add Staff Green.png" />
+    <Content Include="Assets\Images\add Staff White.png" />
+    <Content Include="Assets\Images\add white.png" />
+    <Content Include="Assets\Images\add-2 black.png" />
+    <Content Include="Assets\Images\add-2 CadetBlue.png" />
+    <Content Include="Assets\Images\add-2 Green.png" />
+    <Content Include="Assets\Images\add-2 White.png" />
+    <Content Include="Assets\Images\add-new-user - Black.png" />
+    <Content Include="Assets\Images\add-new-user - Green.png" />
+    <Content Include="Assets\Images\add-new-user - White.png" />
+    <Content Include="Assets\Images\add-new-user.png" />
+    <Content Include="Assets\Images\appointment Black.png" />
+    <Content Include="Assets\Images\appointment CadetBlue.png" />
+    <Content Include="Assets\Images\appointment Green.png" />
+    <Content Include="Assets\Images\appointment White.png" />
+    <Content Include="Assets\Images\archive - Black.png" />
+    <Content Include="Assets\Images\archive - CadetBlue.png" />
+    <Content Include="Assets\Images\archive - Green.png" />
+    <Content Include="Assets\Images\archive - white.png" />
+    <Content Include="Assets\Images\browser-visualization black.png" />
+    <Content Include="Assets\Images\browser-visualization cadetBlue.png" />
+    <Content Include="Assets\Images\browser-visualization green.png" />
+    <Content Include="Assets\Images\browser-visualization white.png" />
+    <Content Include="Assets\Images\cancel - Black.png" />
+    <Content Include="Assets\Images\cancel - CadetBlue.png" />
+    <Content Include="Assets\Images\cancel - Green.png" />
+    <Content Include="Assets\Images\cancel - White.png" />
+    <Content Include="Assets\Images\check-sign-in-a-rounded-black-square - Black.png" />
+    <Content Include="Assets\Images\check-sign-in-a-rounded-black-square - Green.png" />
+    <Content Include="Assets\Images\check-sign-in-a-rounded-black-square - White.png" />
+    <Content Include="Assets\Images\check-sign-in-a-rounded-black-square.png" />
+    <Content Include="Assets\Images\Checkout - Black.png" />
+    <Content Include="Assets\Images\Checkout - Green.png" />
+    <Content Include="Assets\Images\Checkout - White.png" />
+    <Content Include="Assets\Images\Checkout.png" />
+    <Content Include="Assets\Images\clipboards List - Black.png" />
+    <Content Include="Assets\Images\clipboards List - CadetBlue.png" />
+    <Content Include="Assets\Images\clipboards List - Green.png" />
+    <Content Include="Assets\Images\clipboards List - White.png" />
+    <Content Include="Assets\Images\dashboard - Black.png" />
+    <Content Include="Assets\Images\dashboard - Green.png" />
+    <Content Include="Assets\Images\dashboard - White.png" />
+    <Content Include="Assets\Images\dashboard.png" />
+    <Content Include="Assets\Images\delete-button Black.png" />
+    <Content Include="Assets\Images\delete-button CadetBlue.png" />
+    <Content Include="Assets\Images\delete-button Red.png" />
+    <Content Include="Assets\Images\delete-button white.png" />
+    <Content Include="Assets\Images\delete-button.png" />
+    <Content Include="Assets\Images\Done - Black.png" />
+    <Content Include="Assets\Images\Done - CadetBlue.png" />
+    <Content Include="Assets\Images\Done - Green.png" />
+    <Content Include="Assets\Images\Done - White.png" />
+    <Content Include="Assets\Images\exchange-arrows black.png" />
+    <Content Include="Assets\Images\exchange-arrows CadetBlue.png" />
+    <Content Include="Assets\Images\exchange-arrows green.png" />
+    <Content Include="Assets\Images\exchange-arrows white.png" />
+    <Content Include="Assets\Images\help - black.png" />
+    <Content Include="Assets\Images\help - CadetBlue.png" />
+    <Content Include="Assets\Images\help - Green.png" />
+    <Content Include="Assets\Images\help - white.png" />
+    <Content Include="Assets\Images\HomePage - Green.png" />
+    <Content Include="Assets\Images\HomePage black.png" />
+    <Content Include="Assets\Images\HomePage White.png" />
+    <Content Include="Assets\Images\HomePage.png" />
+    <Content Include="Assets\Images\location Black.png" />
+    <Content Include="Assets\Images\location CadetBlue.png" />
+    <Content Include="Assets\Images\location Green.png" />
+    <Content Include="Assets\Images\location White.png" />
+    <Content Include="Assets\Images\Logo Transparent.png" />
+    <Content Include="Assets\Images\no image found.jpeg" />
+    <Content Include="Assets\Images\pencil - black.png" />
+    <Content Include="Assets\Images\pencil - Green.png" />
+    <Content Include="Assets\Images\pencil - White.png" />
+    <Content Include="Assets\Images\pencil.png" />
+    <Content Include="Assets\Images\Powered by ViaPhone black big.png" />
+    <Content Include="Assets\Images\Powered by ViaPhone black.png" />
+    <Content Include="Assets\Images\Powered by ViaPhone landscape black.png" />
+    <Content Include="Assets\Images\Powered by ViaPhone landscape.png" />
+    <Content Include="Assets\Images\Powered by ViaPhone.png" />
+    <Content Include="Assets\Images\refresh-page-option - Black.png" />
+    <Content Include="Assets\Images\refresh-page-option - CadetBlue.png" />
+    <Content Include="Assets\Images\refresh-page-option - Green.png" />
+    <Content Include="Assets\Images\refresh-page-option - White.png" />
+    <Content Include="Assets\Images\search - Black.png" />
+    <Content Include="Assets\Images\search - CadetBlue.png" />
+    <Content Include="Assets\Images\search - Green.png" />
+    <Content Include="Assets\Images\search - White.png" />
+    <Content Include="Assets\Images\See CSV Black.png" />
+    <Content Include="Assets\Images\See CSV Green.png" />
+    <Content Include="Assets\Images\See CSV White.png" />
+    <Content Include="Assets\Images\See List.png" />
+    <Content Include="Assets\Images\Logo.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design 2 Black.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design 2 CadetBlue.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design 2 Green.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design 2 White.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design Black.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design CadetBlue.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design Green.png" />
+    <Content Include="Assets\Images\SplashScreen scale Design White.png" />
+    <Content Include="Assets\Images\SplashScreen.scale-100.png" />
+    <Content Include="Assets\Images\SplashScreen.scale.png" />
+    <Content Include="Assets\Images\StoreLogo.scale-100.png" />
+    <Content Include="Assets\Images\Suspended - Black.png" />
+    <Content Include="Assets\Images\Suspended - CadetBlue.png" />
+    <Content Include="Assets\Images\Suspended - Green.png" />
+    <Content Include="Assets\Images\Suspended - White.png" />
+    <Content Include="Assets\Images\Upload CSV - Black.png" />
+    <Content Include="Assets\Images\Upload CSV - Green.png" />
+    <Content Include="Assets\Images\Upload CSV - White.png" />
+    <Content Include="Assets\Images\Upload CSV.png" />
+    <Content Include="Assets\Images\user - Green.png" />
+    <Content Include="Assets\Images\user Black.png" />
+    <Content Include="Assets\Images\user White.png" />
+    <Content Include="Assets\Images\user-group-button-with-wreath Black.png" />
+    <Content Include="Assets\Images\user-group-button-with-wreath Green.png" />
+    <Content Include="Assets\Images\user-group-button-with-wreath White.png" />
+    <Content Include="Assets\Images\user-group-button-with-wreath.png" />
+    <Content Include="Assets\Images\user.png" />
+    <Content Include="Assets\Images\WideLogo.scale-100.png" />
     <Content Include="Assets\Logo.scale-100.png" />
+    <Content Include="Assets\no image found.jpeg" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\WideLogo.scale-100.png" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="CheckInRegistered.xaml">
+    <Page Include="Dashboard\Appointment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\ChooseEvent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\CompanyProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\DepartmentStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\Events.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\Location.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\CheckInGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\CheckOutGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\FrontDeskHome.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\RegisterGuest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\SeeGuestList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\test.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\UploadCsvFile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\AddDepartment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\AddStaff.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dashboard\userProfile.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DisplayTV.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ForgotPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="RegisterNewCompany.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TV.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -161,11 +445,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="PhotoUpdatePage.xaml">
+    <Page Include="RegistrationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="RegistrationPage.xaml">
+    <Page Include="sample.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -173,17 +457,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ItemPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="UploadCsv.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\Newtonsoft.Json.8.0.3\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.11.0.2\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="zxing, Version=0.16.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ZXing.Net.0.16.4\lib\windows8\zxing.winmd</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>

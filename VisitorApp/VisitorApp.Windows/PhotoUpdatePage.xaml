@@ -21,7 +21,13 @@
     <!--
         This grid acts as a root panel for the page.
     -->
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF28629C" Offset="0"/>
+                <GradientStop Color="#FF5E7CE4" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -29,80 +35,28 @@
         </Grid.ChildrenTransitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="4*"/>
-            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition/>
 
         </Grid.ColumnDefinitions>
 
-        <Hub Grid.Column="0">
-            <Hub.Header>
-                <!-- Back button and page title -->
-                <Grid Width="1836" >
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="10*"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
 
-                    </Grid.ColumnDefinitions>
-                    <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
-                        VerticalAlignment="Top"
-                        Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button" Height="41" Width="41"/>
-                    <Image Source="Assets/AIICOLogo.png"  Grid.Column="0" RenderTransformOrigin="0.5,0.5"   />
-
-                </Grid>
-            </Hub.Header>
-            <HubSection Width="780" Margin="0,0,80,0">
-                <HubSection.Background>
-                    <ImageBrush ImageSource="Assets/BlueOcean.jpg" Stretch="UniformToFill" />
-                </HubSection.Background>
-
-            </HubSection>
-        </Hub>
-        <Grid Grid.Column="1" Margin="0,100,0,0" Height="1000"  Width="1000">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="10*"/>
-
-            </Grid.RowDefinitions>
-            <TextBlock x:Name="Title"  Text="Welcome To AIICON Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" 
-                        VerticalAlignment="Top" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap"   Height="40"  HorizontalAlignment="Center"  />
-
-            <TextBlock x:Name="CheckIn" Text="Photo Update" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="1" 
-                        VerticalAlignment="Top" Foreground="White"  FontWeight="Bold" IsHitTestVisible="false" TextWrapping="NoWrap"   Height="50" HorizontalAlignment="Center" />
-            <Grid Grid.Row="2" >
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="1*"/>
-
-                </Grid.ColumnDefinitions>
-                <StackPanel   Margin="0,0,0,0"  HorizontalAlignment="Left" Grid.Column="0">
-
-                    <TextBlock  Text="Your Phone Number" FontSize="40" Foreground="White"></TextBlock>
-                    <TextBox  x:Name="txtPhoneNumber" TextWrapping="Wrap" Foreground="Black" Background="White" Language="en-US"  FontSize="40" Height="100" Width="800" Margin="0,0,0,30"/>
-                    <TextBlock  Text="To See (Host Name)" FontSize="40" Foreground="White"></TextBlock>
-                    <TextBox x:Name="txtHostName"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="40" Height="100" Width="800"  Margin="0,0,0,30"/>
-                    <TextBlock  Text="Signature" FontSize="40" Foreground="White" ></TextBlock>
-                    <Canvas x:Name="InkCanvas" Background="White" Height="362" Width="664" />
-
-                </StackPanel>
-                <StackPanel Grid.Column="1">
-                    <!--<Border BorderThickness="2" BorderBrush="#FFF" VerticalAlignment="Top"  Margin="40,40,0,0">
-                        <Image x:Name="PhotoControl"   Height="245" Width="245" Stretch="Fill" />
-                    </Border>-->
-                    <!--<Border BorderThickness="2" BorderBrush="#FFF" VerticalAlignment="Top"  Margin="40,40,0,0"/>-->
-                    <Button x:Name="CheckInButton"  Foreground="White" Background="Green" FontSize="40"  Content="Check In"   Height="250" Width="250" Click="CheckInButton_Click"  Margin="40,50,0,0"></Button>
-                    <Border BorderThickness="2" Background="white" BorderBrush="#FFF" VerticalAlignment="Top"  Margin="40,40,0,0">
-                        <Image x:Name="PhotoCopy"    Height="245" Width="245" Stretch="Fill" />
-                    </Border>
-                    <Button x:Name="BackButton"  Foreground="Green" Background="AntiqueWhite" FontSize="40"  Content="Go Back"   Height="100" Width="250" Click="BackButton_Click"  Margin="40,140,0,0"></Button>
-                </StackPanel>
-            </Grid>
-
-
-
-        </Grid>
+        <Image Source="Assets/AIICOLogo.png" RenderTransformOrigin="0.5,0.5" Margin="173,31,1068,628"   />
+        <TextBlock x:Name="Title"  Text="Welcome To AIICON Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="415,31,194,696"  />
+        <TextBlock x:Name="CheckIn" Text="Visitor Registration" Style="{StaticResource HeaderTextBlockStyle}" Foreground="White"  FontWeight="Bold" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="540,88,320,629" RenderTransformOrigin="0.941,-0.412" />
+        <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
+            VerticalAlignment="Stretch"
+            Command="{Binding NavigationHelper.Home, ElementName=pageRoot}"
+            AutomationProperties.Name="Home"
+            AutomationProperties.AutomationId="BackButton"
+            AutomationProperties.ItemType="Navigation Button" Width="41" Margin="0,40,1285,675" HorizontalAlignment="Right" Click="BackButton_Click" Background="White" RequestedTheme="Dark"/>
+        <GridView x:Name="gridView" HorizontalAlignment="Left" Margin="52,164,0,0" VerticalAlignment="Top" Width="1264" Height="513" RenderTransformOrigin="0.5,0.5">
+            <GridView.RenderTransform>
+                <CompositeTransform ScaleY="-1"/>
+            </GridView.RenderTransform>
+        </GridView>
     </Grid>
 </Page>

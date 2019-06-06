@@ -1,0 +1,349 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="VisitorApp.DisplayTV"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Grid Background="CadetBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Page Header with Logo and Co-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                <Image Grid.Column="1" Source="Assets/AIICOLogo.png" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="225" Width="225"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                    <TextBlock x:Name="txbTitle"  Text="To" Foreground="Yellow" FontSize="56" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txbPageTitle" Text="Guest List" HorizontalAlignment="Center" FontSize="50"/>
+                    <TextBlock x:Name="txbUserName" VerticalAlignment="Center" Foreground="Black" IsHitTestVisible="false" TextWrapping="Wrap" Margin="10" FontSize="32"/>
+                </StackPanel>
+            </StackPanel>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
+                    <Button x:Name="btnHome" Margin="5" HorizontalAlignment="Center" Height="100" Width="100" FontSize="25" FontWeight="Bold" Click="btnHome_Click" ToolTipService.ToolTip="Home"
+                                ToolTipService.Placement="Mouse">
+                        <Border BorderThickness="0">
+                            <Image Source="Assets/images/HomePage black.png" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <!--Fillings-->
+        <Grid Grid.Row="1">
+            <Grid Grid.Column="0">
+                <Grid>
+                    <!--Scroll & Flls Selection Buttons-->
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Above Scroll-->
+                        <Grid Grid.Row="0">
+                            <StackPanel Orientation="Vertical">
+
+
+                                <!--The Search section-->
+                                <Grid  Background="LightGray" x:Name="gridSearchSection" Visibility="Visible">
+                                    <Border BorderBrush="CadetBlue">
+                                        <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch">
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                                                <StackPanel Orientation="Horizontal" Margin="5" HorizontalAlignment="Stretch">
+
+                                                    <!--Populate with Search List-->
+                                                    <TextBox x:Name="txtSearchItem" Width="700" KeyDown="txtSearchItem_KeyDown"/>
+
+                                                    <!--Populate Search Button-->
+                                                    <Button Background="CadetBlue" x:Name="btnPopulateGridfromSearch" Click="btnPopulateGridfromSearch_Click"  Foreground="Black" BorderThickness="0" 
+                                                            Height="50" Width="50">
+                                                        <Border  BorderThickness="0">
+                                                            <Image Source="Assets/images/search - Black.png" Stretch="Uniform"/>
+                                                        </Border>
+                                                    </Button>
+                                                </StackPanel>
+
+                                                <!--Filter Button-->
+                                                <Button Content="Filter Search" x:Name="btnFlterSearch" Click="btnFlterSearch_Click" Margin="5" HorizontalAlignment="Right" Foreground="Black"/>
+                                            </StackPanel>
+                                            
+                                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                                <Button Content="Show Checked In Guest" x:Name="btnShowTodayGuest" Click="btnShowTodayGuest_Click"  Background="CadetBlue" Foreground="Black"/>
+                                                <Button Content="Show Checked In Guest" x:Name="btnShowCheckedIn" Click="btnShowCheckedIn_Click"  Background="CadetBlue" Foreground="Black"/>
+                                                <Button Content="Show Checked Out Guest" x:Name="btnShowCheckedOut" Click="btnShowCheckedOut_Click"  Background="CadetBlue" Foreground="Black"/>
+                                                <Button x:Name="btnShowAll" Content="All" Click="btnShowAll_Click"  Background="CadetBlue" Foreground="Black"/>
+                                            </StackPanel>
+
+                                            <!--Filter Options-->
+                                            <StackPanel x:Name="stackPanelFilter" HorizontalAlignment="Stretch" Visibility="Collapsed" Background="CadetBlue">
+                                                <ItemsControl Grid.Row="1" HorizontalAlignment="Stretch" >
+                                                    <ItemsControl.ItemContainerTransitions>
+                                                        <TransitionCollection>
+                                                            <EntranceThemeTransition/>
+                                                        </TransitionCollection>
+                                                    </ItemsControl.ItemContainerTransitions>
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                    <ItemsControl.Items>
+                                                        <StackPanel Orientation="Horizontal" Margin="5">
+                                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                                <StackPanel  Margin="5">
+                                                                    <CheckBox x:Name="chbAll" Background="CadetBlue" Tag="All"  Content="All"  Margin="5" IsChecked="True" Click="chbAll_Checked" Foreground="Black" FontWeight="Bold"/>
+                                                                    <CheckBox x:Name="chbFullName" Background="CadetBlue" Tag="FullName"  Content="Full Name" Margin="5" Click="chbItemChecked_Checked" IsChecked="True" Foreground="Black" FontWeight="Bold"/>
+                                                                </StackPanel>
+                                                                <StackPanel  Margin="5">
+                                                                    <CheckBox x:Name="chbPhoneNumber" Background="CadetBlue"  Tag="PhoneNumber"  Content="Phone Number" Margin="5"  Click="chbItemChecked_Checked" IsChecked="True" Foreground="Black" FontWeight="Bold"/>
+                                                                    <CheckBox x:Name="chbHostName" Background="CadetBlue" Tag="HostName"  Content="Host Name" Margin="5"  Click="chbItemChecked_Checked" IsChecked="True" Foreground="Black" FontWeight="Bold"/>
+                                                                </StackPanel>
+                                                                <StackPanel  Margin="5">
+                                                                    <CheckBox x:Name="chbEmail"  Background="CadetBlue" Tag="Email"  Content="Email"  Margin="5" Click="chbItemChecked_Checked" IsChecked="True" Foreground="Black" FontWeight="Bold"/>
+                                                                    <CheckBox x:Name="chbCompany" Background="CadetBlue" Tag="Company"  Content="Company"  Margin="5" Click="chbItemChecked_Checked" IsChecked="True" Foreground="Black" FontWeight="Bold"/>
+                                                                </StackPanel>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                                <Border BorderThickness="1" BorderBrush="Black" Margin="5,0,5,0">
+                                                                    <StackPanel Orientation="Vertical" Margin="5">
+                                                                        <StackPanel Background="CadetBlue" HorizontalAlignment="Stretch" Height="40">
+                                                                            <CheckBox x:Name="chbStatus" Tag="Status"  Content="Status"  Margin="5" IsChecked="True" Click="chbItemChecked_Checked" Foreground="Black" FontWeight="Bold"/>
+                                                                        </StackPanel>
+                                                                        <CheckBox x:Name="chbStatusCheckIn" Tag="CheckedIn"  Content="Checked In"  Margin="5" IsChecked="True" Click="chbStatusItemChecked_Checked" Foreground="Black"/>
+                                                                        <CheckBox x:Name="chbStatusCheckOut" Tag="CheckedOut"  Content="Checked Out"  Margin="5" IsChecked="True" Click="chbStatusItemChecked_Checked" Foreground="Black"/>
+                                                                    </StackPanel>
+                                                                </Border>
+                                                                <Border BorderThickness="1" BorderBrush="Black"  Margin="5,0,5,0">
+                                                                    <StackPanel Orientation="Vertical" Margin="5">
+                                                                        <StackPanel Background="CadetBlue" HorizontalAlignment="Stretch" Height="40">
+                                                                            <CheckBox x:Name="chbInvitationCode" Tag="InvitationCode"  Content="Invitation Code"  Margin="5" IsChecked="True" Click="chbItemChecked_Checked" Foreground="Black" FontWeight="Bold"/>
+                                                                        </StackPanel>
+                                                                        <CheckBox x:Name="chbInvitationCodeNo" Tag="No InvitationCode"  Content="No Invitation Code"  Margin="5" IsChecked="True" Click="chbInvitationCodeItemChecked_Checked" Foreground="Black"/>
+                                                                        <CheckBox x:Name="chbInvitationCodeYes" Tag="HasInvitationCode"  Content="Has Invitation Code"  Margin="5" IsChecked="True" Click="chbInvitationCodeItemChecked_Checked" Foreground="Black"/>
+                                                                    </StackPanel>
+                                                                </Border>
+                                                                <Border BorderThickness="1" BorderBrush="Black" Margin="5,0,5,0">
+                                                                    <StackPanel Orientation="Vertical" Margin="5">
+                                                                        <StackPanel Background="CadetBlue" HorizontalAlignment="Stretch" Height="40">
+                                                                            <CheckBox x:Name="chbDate" Tag="Date"  Content="Date"  Margin="5" IsChecked="True" Click="chbItemChecked_Checked" Foreground="Black" FontWeight="Bold"/>
+                                                                        </StackPanel>
+                                                                        <StackPanel Orientation="Horizontal">
+                                                                            <CheckBox x:Name="chbDateFromYesterday" Tag="FromYesterday"  Content="From Yesterday"  Margin="5" IsChecked="False" Click="chbDateItemChecked_Checked" Foreground="Black"/>
+                                                                            <CheckBox x:Name="chbDateThisWeek" Tag="ThisWeek"  Content="This Week"  Margin="5" IsChecked="False" Click="chbDateItemChecked_Checked" Foreground="Black"/>
+                                                                            <CheckBox x:Name="chbDateThisMonth" Tag="ThisMonth"  Content="This Month"  Margin="5" IsChecked="False" Click="chbDateItemChecked_Checked" Foreground="Black"/>
+                                                                            <CheckBox x:Name="chbDateThisYear" Tag="ThisYear"  Content="This Year"  Margin="5" IsChecked="False" Click="chbDateItemChecked_Checked" Foreground="Black"/>
+                                                                            <CheckBox x:Name="chbDateAllTime" Tag="AllTime"  Content="All Time"  Margin="5" IsChecked="True" Click="chbDateItemChecked_Checked" Foreground="Black"/>
+                                                                        </StackPanel>
+                                                                        <CheckBox x:Name="chbDateFromTo" Tag="FromTo"  Margin="5" IsChecked="False" Click="chbDateItemChecked_Checked">
+                                                                            <StackPanel Orientation="Vertical">
+                                                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Margin="0,0,0,5">
+                                                                                    <TextBlock Text="From" Width="40" Foreground="Black"/>
+                                                                                    <DatePicker x:Name="dtpFrom" />
+                                                                                </StackPanel>
+                                                                                <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                                                                                    <TextBlock Text="To" Width="40" Foreground="Black"/>
+                                                                                    <DatePicker x:Name="dtpTo"/>
+                                                                                </StackPanel>
+                                                                            </StackPanel>
+                                                                        </CheckBox>
+                                                                    </StackPanel>
+                                                                </Border>
+
+                                                            </StackPanel>
+                                                        </StackPanel>
+                                                    </ItemsControl.Items>
+                                                </ItemsControl>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+
+                        <!--Filling Items Sections/Scroll-->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <!--Headers-->
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Background="Black">
+                                    <TextBlock x:Name="txbSN" Width="75" Text="S/N" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Foreground="White" Margin="10"/>
+                                    <TextBlock x:Name="txbFullName" Text="Full Name" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Margin="10" Width="200" 
+                                        TextWrapping="Wrap" Foreground="White"/>
+                                    <TextBlock x:Name="txbCompany" Text="Company" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Margin="10" Width="200"
+                                        TextWrapping="Wrap" Foreground="White"/>
+                                    <TextBlock x:Name="txbEmail" Text="Email" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Margin="10" Width="200"
+                                        TextWrapping="Wrap" Foreground="White"/>
+                                    <TextBlock x:Name="txbPhoneNumber" Text="Phone Number" TextAlignment="Left" VerticalAlignment="Center" FontWeight="ExtraBold" FontSize="18" Margin="10" Width="200"
+                                        TextWrapping="Wrap" Foreground="White"/>
+                                    <Button x:Name="btnCloseSearch" Content="X" ToolTipService.ToolTip="Close Search" HorizontalAlignment="Right" Width="45" Height="45" VerticalAlignment="Top" Grid.Column="1" Background="White"
+                                        Margin="0,0,10,0"  Foreground="CadetBlue" FontWeight="Bold" Visibility="Collapsed" Click="btnCloseSearch_Click" ToolTipService.Placement="Mouse" />
+                                </StackPanel>
+
+                                <!--Body-->
+                                <Grid Grid.Row="1">
+                                    <!--Populate Section-->
+                                    <Grid x:Name="GridPopulateSection">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!--Populate List-->
+                                        <Grid Grid.Row="0">
+
+                                            <!--Items Fill-->
+                                            <ListView x:Name="LstPopulate" CanReorderItems="True" IsItemClickEnabled="True" 
+                                                ItemClick="LstPopulate_ItemClick" SelectionMode="Single"
+                                                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                            <TextBlock Text="{Binding sn}"  TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="75"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock Text="{Binding GuestFullName}"  TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200" 
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock  Text="{Binding GuestCompany}" TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock Text="{Binding GuestEmail}" TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock Text="{Binding GuestPhoneNumber}" TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </Grid>
+
+                                        <!--Footer-->
+                                        <StackPanel Grid.Row="1" Background="Black">
+                                            <TextBlock x:Name="txtPopulateNumber" IsTextSelectionEnabled="True" Margin="10" Foreground="White" FontWeight="Bold"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                    <!--Search Section-->
+                                    <Grid x:Name="GridSearchSection" Visibility="Collapsed">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+
+                                        <!--Search Items Fill-->
+                                        <Grid Grid.Row="0">
+                                            <ListView   x:Name="LstSearch" Background="Gray" CanReorderItems="True" IsItemClickEnabled="True" ItemClick="LstSearch_ItemClick"
+                                                        SelectionMode="Single" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                                                            <TextBlock Text="{Binding sn}"  TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="75"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock Text="{Binding GuestFullName}"  TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200" 
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock  Text="{Binding GuestCompany}" TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock Text="{Binding GuestEmail}" TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                            <TextBlock Text="{Binding GuestPhoneNumber}" TextAlignment="Left" VerticalAlignment="Center" Margin="10" Width="200"
+                                                                TextWrapping="Wrap" Foreground="Black"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </Grid>
+
+                                        <!--Footer-->
+                                        <StackPanel Grid.Row="1" Background="Black">
+                                            <TextBlock x:Name="txtSearchListNo" IsTextSelectionEnabled="True" Margin="10" Foreground="White" FontWeight="Bold"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </Grid>
+
+                            </Grid>
+
+                            <!--Details of Individual items-->
+                            <Grid Name="gridGuestDetail" HorizontalAlignment="Right" Grid.Column="1" Visibility="Collapsed" Background="LightGray">
+                                <!--Detail of what is selected-->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0" >
+                                    <Button Name="btnGuestDetailClose" Content="X" Background="CadetBlue" VerticalAlignment="Top" Click="btnGuestDetailClose_Click" HorizontalAlignment="Left"/>
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0" HorizontalAlignment="Center">
+                                        <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                                            <Border Background="Black">
+                                                <Image Name="ImgClickedItemGuestPicture" Width="150" Height="150"/>
+                                            </Border>
+                                            <TextBlock Name="txtClickedItemGuestStatus" FontWeight="Bold" FontSize="30"  Margin="10" HorizontalAlignment="Center" Foreground="Black"/>
+                                            <Button x:Name="btnCheckOut" Content="Check Out Guest" Click="btnCheckOut_Click" HorizontalAlignment="Center" Background="CadetBlue" Margin="5"/>
+                                        </StackPanel>
+                                    </Grid>
+                                    <ScrollViewer Grid.Row="1">
+                                        <StackPanel Orientation="Vertical">
+                                            <StackPanel Name="VisitorDetail" Orientation="Vertical" VerticalAlignment="Top" Margin="10" >
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <TextBlock Text="Full Name" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestFullname" HorizontalAlignment="Center" Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <TextBlock Text="Company Name" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestCompany" HorizontalAlignment="Center"  Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <TextBlock Text="Email" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestEmail" HorizontalAlignment="Center" Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <TextBlock Text="Phone Number" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestPhoneNumber" HorizontalAlignment="Center" Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <TextBlock Text="Host Name" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestHostName" HorizontalAlignment="Center" Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Center">
+                                                    <TextBlock Text="Check In Time" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestCheckIn" HorizontalAlignment="Center" Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Center" x:Name="stackGuestCheckOut">
+                                                    <TextBlock Text="Check Out Time" HorizontalAlignment="Center" Margin="5" Foreground="CadetBlue" FontWeight="Bold" FontSize="16"/>
+                                                    <TextBlock Name="txtClickedItemGuestCheckOut" HorizontalAlignment="Center" Margin="5" Foreground="Black" FontSize="16"/>
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

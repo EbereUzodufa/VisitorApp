@@ -19,60 +19,90 @@
     </Page.Resources>
 
     <!--
-        This grid acts as a root panel for the page.
-    -->
-    <Grid>
+        This grid acts as a root panel for the page.-->
+
+    <Grid Background="CadetBlue">
         <Grid.RowDefinitions>
-            <RowDefinition Height="136*"/>
-            <RowDefinition Height="145*"/>
-            <RowDefinition Height="120*"/>
-            <RowDefinition Height="145*"/>
-            <RowDefinition Height="202*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FF28629C" Offset="0"/>
-                <GradientStop Color="#FF5E7CE4" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
             </TransitionCollection>
         </Grid.ChildrenTransitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="145*"/>
-            <ColumnDefinition Width="223*"/>
-            <ColumnDefinition Width="525*"/>
-            <ColumnDefinition Width="443*"/>
-            <ColumnDefinition Width="30*"/>
+        <!--Header-->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5">
+                <Image Grid.Column="1" Source="Assets/AIICOLogo.png" Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center" Height="225" Width="225"/>
+                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="5">
+                    <TextBlock x:Name="txbTitle"  Text="to" Foreground="Yellow" FontSize="56" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="txbPageTitle" Text="Guest Check In" HorizontalAlignment="Center" FontSize="50"/>
+                    <TextBlock x:Name="txbUserName" VerticalAlignment="Center" Foreground="Black" IsHitTestVisible="false" TextWrapping="Wrap" Margin="10" FontSize="32"/>
+                </StackPanel>
+            </StackPanel>
+            <Grid Grid.Column="0">
+                <StackPanel Orientation="Vertical" Margin="10" VerticalAlignment="Center">
+                    <Button x:Name="btnHome" Margin="5" HorizontalAlignment="Center" Height="100" Width="100" FontSize="25" FontWeight="Bold" Click="btnHome_Click" ToolTipService.ToolTip="Home"
+                                ToolTipService.Placement="Mouse">
+                        <Border BorderThickness="0">
+                            <Image Source="Assets/images/HomePage black.png" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
 
-        </Grid.ColumnDefinitions>
-        <Image Source="Assets/AIICOLogo.png" RenderTransformOrigin="0.5,0.5" Margin="38,15,60,12" Grid.Column="1"   />
-        <TextBlock x:Name="Title"  Text="Welcome To AIICON Insurance" Style="{StaticResource HeaderTextBlockStyle}" Grid.Row="0" Foreground="Yellow" IsHitTestVisible="false" TextWrapping="NoWrap" Margin="57,31,151,64" Grid.Column="2" Grid.ColumnSpan="2"  />
-        <TextBlock x:Name="CheckIn" Text="Visitor Registration " Style="{StaticResource HeaderTextBlockStyle}" Foreground="White"  FontWeight="Bold" IsHitTestVisible="false" TextWrapping="Wrap" Margin="170,85,289,0" RenderTransformOrigin="0.941,-0.412" Grid.Column="2" Grid.ColumnSpan="2" TextAlignment="Center" />
-        <TextBlock  Text="Your Phone Number" FontSize="40" Foreground="White" Margin="69,15,417,79" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <TextBox  x:Name="txtPhoneNumber" TextWrapping="Wrap" Foreground="Black" Background="White" Language="en-US"  FontSize="40" Margin="69,68,61,27" Grid.ColumnSpan="3" Grid.Row="1"/>
-        <TextBlock  Text="Invitation Code" FontSize="40" Foreground="White" Margin="69,3,460,66" Grid.ColumnSpan="3" Grid.Row="2"/>
-        <TextBox x:Name="txtInvitationCode"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="40"  Margin="69,51,61,20" Grid.ColumnSpan="3" Grid.Row="2"/>
-        <TextBlock  Text="Signature" FontSize="40" Foreground="White" Margin="69,140,417,154.496" Grid.ColumnSpan="3" Grid.Row="3" Grid.RowSpan="2" />
-        <Canvas x:Name="InkCanvas" Background="White" Margin="69,43,61,0.496" Grid.ColumnSpan="3" Grid.Row="4" />
-        <Border Margin="38,0,30,125" HorizontalAlignment="Center" Width="375" Height="233" VerticalAlignment="Bottom" BorderThickness="1" BorderBrush="White" Background="Black" Grid.Column="3" Grid.Row="1" Grid.RowSpan="3">
-            <Image x:Name="PhotoCopy" Margin="12,17,12,15" Grid.Row="1" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="1" Stretch="Fill"/>
-        </Border>
-        <TextBlock x:Name="txtVistorName" HorizontalAlignment="Center" Margin="38,40,30,27" TextWrapping="Wrap" Text="Visitor's Name" VerticalAlignment="Center" FontSize="30" TextAlignment="Center" Width="375" Height="78" Grid.Column="3" Grid.Row="3"/>
-        <Button  x:Name="backButton" Style="{StaticResource NavigationBackButtonNormalStyle}" 
-            VerticalAlignment="Stretch"
-            Command="{Binding NavigationHelper.Home, ElementName=pageRoot}"
-            AutomationProperties.Name="Home"
-            AutomationProperties.AutomationId="BackButton"
-            AutomationProperties.ItemType="Navigation Button" Margin="50,40,54,43" HorizontalAlignment="Stretch" Click="BackButton_Click" Background="White" RequestedTheme="Dark"/>
-        <TextBlock  Text="To See (Host Name)" FontSize="40" Foreground="White" Margin="69,14,460,78" Grid.ColumnSpan="3" Grid.Row="3"/>
-        <TextBox x:Name="txtHostName"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="40"  Margin="69,63,61,31" IsReadOnly="True" Grid.ColumnSpan="3" Grid.Row="3"/>
-        <Button x:Name="CheckInButton"  Foreground="#FF72FB00" Background="White" FontSize="40" Height="103" Click="CheckInButton_Click"  Margin="35,69,27,0" BorderBrush="#FF72FB00" Grid.Column="3" Grid.Row="4" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <TextBlock  Text="Check In" FontSize="40" Foreground="#FF72FB00" SelectionHighlightColor="#FF5E7CE4"/>
-        </Button>
+        <!--Body-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer Grid.Column="0">
+                <StackPanel Orientation="Vertical" Margin="20">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  Text="Your Phone Number" FontSize="40" Foreground="White" Margin="5" />
+                        <TextBox  x:Name="txtPhoneNumber" TextWrapping="Wrap" Foreground="Black" Background="White" Language="en-US"  FontSize="40" Margin="5" KeyUp="txtPhoneNumber_KeyUp"/>
+                        <Button x:Name="btnUU" Content="K" Click="btnUU_Click"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  Text="Does Guest Have Invitation Code" FontSize="40" Foreground="White" Margin="5" />
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                            <RadioButton Content="Yes" Tag="yes" Click="RadioButton_Checked" Margin="20,0,50,0"  GroupName="InvitationCode"   FontSize="40"/>
+                            <RadioButton Content="No" Tag="no" Click="RadioButton_Checked" Margin="50,0,20,0"  GroupName="InvitationCode" IsChecked="True" FontSize="40"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" x:Name="stackPanelIV" Visibility="Collapsed">
+                        <TextBlock  Text="Invitation Code" FontSize="40" Foreground="White" Margin="5"/>
+                        <TextBox x:Name="txtInvitationCode"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="40" Margin="5"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  Text="To See (Host Name)" FontSize="40" Foreground="White" Margin="5" />
+                        <TextBox x:Name="txtHostName"  TextWrapping="Wrap"  Foreground="Black" Background="White" Language="en-US"  FontSize="40"  Margin="5" Grid.Row="1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  Text="Signature" FontSize="40" Foreground="White" Margin="5" />
+                        <Canvas x:Name="InkCanvas" Background="White" Margin="5" Height="150" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical" Margin="20">
+                <Border Margin="25" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1" BorderBrush="White" Background="LightGray">
+                    <Image x:Name="PhotoCopy" Margin="25" RenderTransformOrigin="0.5,0.5" Canvas.ZIndex="1" Stretch="Fill" Width="250" Height="250"/>
+                </Border>
+                <TextBlock x:Name="txtVisitorName" HorizontalAlignment="Center" Margin="10" TextWrapping="Wrap" Text="User not Registered" VerticalAlignment="Center" FontSize="30" TextAlignment="Center" Width="375" Height="93" Visibility="Collapsed"/>
+                <Button x:Name="CheckInButton"  Foreground="#FF72FB00" Background="White" FontSize="40" Height="100" Click="CheckInButton_Click"  BorderBrush="LightGray" HorizontalAlignment="Stretch">
+                    <TextBlock  Text="Check In" FontSize="40" Foreground="CadetBlue" SelectionHighlightColor="Black" FontWeight="Bold"/>
+                </Button>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>

@@ -1,0 +1,118 @@
+﻿<Page
+    x:Name="pageRoot"
+    x:Class="VisitorApp.MainPage"
+    DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VisitorApp"
+    xmlns:data="using:VisitorApp.Data"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"  > 
+    <!--Loaded="HubPage_Loaded"-->
+  
+
+    <Page.Resources>
+        <!-- Grid-appropriate 310 by 260 pixel item template as seen in section 4 -->
+        <SolidColorBrush Color="Aquamarine" x:Name="Welcome" />
+    </Page.Resources>
+
+    <!--
+    This grid acts as a root panel for the page.
+  -->
+    <Grid Background="CadetBlue">
+        <Grid.ChildrenTransitions>
+            <TransitionCollection>
+                <EntranceThemeTransition/>
+            </TransitionCollection>
+        </Grid.ChildrenTransitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" HorizontalAlignment="Center" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Image Source="Assets/AIICOLogo.png"  Grid.Column="0" Margin="10"  Height="150" />
+            </StackPanel>
+            <Grid Grid.Column="1">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock x:Name="txbTitle"  Text="Welcome To" VerticalAlignment="Center" Foreground="Yellow" IsHitTestVisible="false" 
+                               TextWrapping="Wrap" Margin="10" FontSize="56"/>
+                    <TextBlock x:Name="txbUserName" VerticalAlignment="Center" Foreground="Black" IsHitTestVisible="false" TextWrapping="Wrap" Margin="10" FontSize="32"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
+        <ItemsControl Grid.Row="1" x:Name="rectangleItems" HorizontalAlignment="Center" >
+            <ItemsControl.ItemContainerTransitions>
+                <TransitionCollection>
+                    <EntranceThemeTransition/>
+                </TransitionCollection>
+            </ItemsControl.ItemContainerTransitions>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <WrapGrid Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+
+            <!-- The sequence children appear depends on their order in the panel's children, not necessarily on where they renderon the screen. Be sure to arrange your child elements in
+                the order you want them to transition into view. -->
+            <ItemsControl.Items>
+                <StackPanel Orientation="Vertical"  Margin="10" Height="250">
+                    <Button  BorderThickness="0" Width="200" Height="200" PointerEntered="StackPanel_PointerEntered" PointerExited="StackPanel_PointerExited" Click="RegisteredButton_Click" >
+                        <Border   Margin="5" BorderThickness="0">
+                            <Image Source="Assets/images/user-group-button-with-wreath Green.png"/>
+                        </Border>
+                    </Button>
+                    <TextBlock Text="Register new Guest" FontSize="25" FontWeight="SemiBold" TextAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  Margin="10" >
+                    <Button  BorderThickness="0" Width="200" Height="200" PointerEntered="StackPanel_PointerEntered" PointerExited="StackPanel_PointerExited"  Click="InvitationButton_Click">
+                        <Border Margin="5" BorderThickness="0">
+                            <Image Source="Assets/images/check-sign-in-a-rounded-black-square - Green.png"/>
+                        </Border>
+                    </Button>
+                    <TextBlock Text="Check In Guest" FontSize="25" FontWeight="SemiBold" TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  Margin="10" >
+                    <Button  BorderThickness="0" Width="200" Height="200" PointerEntered="StackPanel_PointerEntered" PointerExited="StackPanel_PointerExited" Click="CheckOutButton_Click">
+                        <Border  Margin="5" BorderThickness="0">
+                            <Image Source="Assets/images/Checkout - Green.png" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                    <TextBlock Text="Check Out Guest" FontSize="25" FontWeight="SemiBold" TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  Margin="10">
+                    <Button  BorderThickness="0" Width="200" Height="200" PointerEntered="StackPanel_PointerEntered" PointerExited="StackPanel_PointerExited" Click="SeeGuestList_Click">
+                        <Border Margin="5" BorderThickness="0">
+                            <Image Source="Assets/images/See CSV Green.png" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                    <TextBlock Text="See Guests List" FontSize="25" FontWeight="SemiBold" TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  Margin="10">
+                    <Button  BorderThickness="0" Width="200" Height="200" PointerEntered="StackPanel_PointerEntered" PointerExited="StackPanel_PointerExited" Click="SeeGuestListAllDetails_Click">
+                        <Border Margin="5" BorderThickness="0">
+                            <Image Source="Assets/images/clipboards List - Green.png" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                    <TextBlock Text="All See Guests" FontSize="25" FontWeight="SemiBold" TextAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"  Margin="10">
+                    <Button  BorderThickness="0" Width="200" Height="200" PointerEntered="StackPanel_PointerEntered" PointerExited="StackPanel_PointerExited" Click="UploadCSV_Click">
+                        <Border  Margin="5" BorderThickness="0">
+                            <Image Source="Assets/images/Upload CSV - Green.png" HorizontalAlignment="Center"/>
+                        </Border>
+                    </Button>
+                    <TextBlock Text="Upload Guest List" FontSize="25" FontWeight="SemiBold" TextAlignment="Center"/>
+                </StackPanel>
+            </ItemsControl.Items>
+        </ItemsControl>
+    </Grid>
+</Page>
